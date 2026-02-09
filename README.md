@@ -30,7 +30,7 @@ The language includes, among others, the following elements:
 
 ---
 
-## 🏗️ Project Structure
 
-The project follows a standard Maven structure and organizes the AST into separate packages:
+
+
 
