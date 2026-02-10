@@ -1,9 +1,10 @@
 package ast.expressions;
 
 import ast.Type;
+import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 
-public class Cast implements Expression {
+public class Cast extends AbstractLocatable implements Expression {
 
     private Expression expression;
     private Type type;

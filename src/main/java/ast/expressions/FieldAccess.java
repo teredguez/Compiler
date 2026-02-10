@@ -1,8 +1,9 @@
 package ast.expressions;
 
+import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 
-public class FieldAccess implements Expression {
+public class FieldAccess extends AbstractLocatable implements Expression {
 
     private String fieldName;
     private Expression expression;

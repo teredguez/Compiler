@@ -1,12 +1,13 @@
 package ast.definitions;
 
 import ast.Type;
+import ast.locatables.AbstractLocatable;
 import ast.locatables.Definition;
 import ast.locatables.Statement;
 
 import java.util.List;
 
-public class FuncDefinition implements Definition {
+public class FuncDefinition extends AbstractLocatable implements Definition {
 
     private Type type;
     private String name;

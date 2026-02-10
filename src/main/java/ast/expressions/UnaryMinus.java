@@ -1,8 +1,9 @@
 package ast.expressions;
 
+import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 
-public class UnaryMinus implements Expression {
+public class UnaryMinus extends AbstractLocatable implements Expression {
 
     private Expression expression;
 

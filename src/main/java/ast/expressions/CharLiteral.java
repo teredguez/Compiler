@@ -1,8 +1,9 @@
 package ast.expressions;
 
+import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 
-public class CharLiteral implements Expression {
+public class CharLiteral extends AbstractLocatable implements Expression {
 
     private char value;
 

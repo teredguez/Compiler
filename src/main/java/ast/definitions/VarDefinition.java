@@ -1,10 +1,11 @@
 package ast.definitions;
 
 import ast.Type;
+import ast.locatables.AbstractLocatable;
 import ast.locatables.Definition;
 import ast.locatables.Statement;
 
-public class VarDefinition implements Definition, Statement {
+public class VarDefinition extends AbstractLocatable implements Definition, Statement {
 
     @Override
     public String getName() {

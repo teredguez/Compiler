@@ -1,12 +1,9 @@
 package ast.expressions;
 
+import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 
-public class CompareOperation implements Expression {
-
-    private Expression expression1;
-    private Expression expression2;
-    private String operator;
+public class CompareOperation extends BinaryOperation  {
 
     @Override
     public int getLine() {

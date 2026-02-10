@@ -1,9 +1,10 @@
 package ast.statements;
 
+import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 import ast.locatables.Statement;
 
-public class ReturnStatement implements Statement {
+public class ReturnStatement extends AbstractLocatable implements Statement {
 
     private Expression returnExpression;
 
