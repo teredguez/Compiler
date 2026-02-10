@@ -4,6 +4,8 @@ import ast.locatables.Expression;
 
 public class UnaryMinus implements Expression {
 
+    private Expression expression;
+
     @Override
     public int getLine() {
         return 0;

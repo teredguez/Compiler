@@ -1,8 +1,12 @@
 package ast.expressions;
 
+import ast.Type;
 import ast.locatables.Expression;
 
 public class Cast implements Expression {
+
+    private Expression expression;
+    private Type type;
 
     @Override
     public int getLine() {

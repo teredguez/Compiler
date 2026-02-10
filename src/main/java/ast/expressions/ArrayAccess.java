@@ -4,6 +4,9 @@ import ast.locatables.Expression;
 
 public class ArrayAccess implements Expression {
 
+    private Expression expression1;
+    private Expression expression2;
+
     @Override
     public int getLine() {
         return 0;

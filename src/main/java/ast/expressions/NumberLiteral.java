@@ -4,6 +4,8 @@ import ast.locatables.Expression;
 
 public class NumberLiteral implements Expression {
 
+    private double value;
+
     @Override
     public int getLine() {
         return 0;
