@@ -17,7 +17,8 @@ public class TSmmParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		WHITES=1, INT_CONSTANT=2, REAL_CONSTANT=3;
+		WHITES=1, COMMENT=2, INT_CONSTANT=3, CHAR_CONSTANT=4, REAL_CONSTANT=5, 
+		ID=6;
 	public static final int
 		RULE_program = 0;
 	private static String[] makeRuleNames() {
@@ -34,7 +35,8 @@ public class TSmmParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "WHITES", "INT_CONSTANT", "REAL_CONSTANT"
+			null, "WHITES", "COMMENT", "INT_CONSTANT", "CHAR_CONSTANT", "REAL_CONSTANT", 
+			"ID"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -98,6 +100,14 @@ public class TSmmParser extends Parser {
 		public TerminalNode INT_CONSTANT(int i) {
 			return getToken(TSmmParser.INT_CONSTANT, i);
 		}
+		public List<TerminalNode> CHAR_CONSTANT() { return getTokens(TSmmParser.CHAR_CONSTANT); }
+		public TerminalNode CHAR_CONSTANT(int i) {
+			return getToken(TSmmParser.CHAR_CONSTANT, i);
+		}
+		public List<TerminalNode> ID() { return getTokens(TSmmParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(TSmmParser.ID, i);
+		}
 		public ProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -119,7 +129,7 @@ public class TSmmParser extends Parser {
 				{
 				setState(2);
 				_la = _input.LA(1);
-				if ( !(_la==INT_CONSTANT || _la==REAL_CONSTANT) ) {
+				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 120L) != 0)) ) {
 				_errHandler.recoverInline(this);
 				}
 				else {
@@ -132,7 +142,7 @@ public class TSmmParser extends Parser {
 				setState(5); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==INT_CONSTANT || _la==REAL_CONSTANT );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 120L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -147,9 +157,9 @@ public class TSmmParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0003\b\u0002\u0000\u0007\u0000\u0001\u0000\u0004\u0000\u0004"+
+		"\u0004\u0001\u0006\b\u0002\u0000\u0007\u0000\u0001\u0000\u0004\u0000\u0004"+
 		"\b\u0000\u000b\u0000\f\u0000\u0005\u0001\u0000\u0000\u0000\u0001\u0000"+
-		"\u0000\u0001\u0001\u0000\u0002\u0003\u0007\u0000\u0003\u0001\u0000\u0000"+
+		"\u0000\u0001\u0001\u0000\u0003\u0006\u0007\u0000\u0003\u0001\u0000\u0000"+
 		"\u0000\u0002\u0004\u0007\u0000\u0000\u0000\u0003\u0002\u0001\u0000\u0000"+
 		"\u0000\u0004\u0005\u0001\u0000\u0000\u0000\u0005\u0003\u0001\u0000\u0000"+
 		"\u0000\u0005\u0006\u0001\u0000\u0000\u0000\u0006\u0001\u0001\u0000\u0000"+
