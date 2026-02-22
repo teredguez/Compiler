@@ -1,41 +1,55 @@
 grammar TSmm;	
 
-program: expression EOF
+program: definition+ EOF
+       ;
+
+//Syntax analysis
+definition: varDefinition
+           | funcDefinition
+           ;
+
+varDefinition: 'let' ID (',' ID)* ':' type ';'
+              ;
+
+funcDefinition: 'function' ID '(' parameters? ')' ':' (simple_type | 'void') '{' varDefinition* statement* '}'
+              ;
+
+parameters: (ID ':' simple_type) (',' ID ':' simple_type)*
+           ;
+
+functionInvocation: ID '(' arguments? ')'
+                   ;
+
+arguments : expression (',' expression)*
+          ;
+
+statement: 'log' expression (',' expression)* ';'
+         | 'input' expression (',' expression) * ';'
+         | expression '=' expression ';'
+         | 'while' '(' expression ')' block
+         | 'if' '(' expression ')' block ('else' block)?
+         | 'return' expression ';'
+         | functionInvocation ';'
+        ;
+block: statement
+       | '{' statement* '}'
        ;
 
 expression : '(' expression ')'
-        | expression '.' ID
         | expression '[' expression ']'
-        | '(' expression 'as' simple_type ')'
+        | expression '.' ID
+        | '(' expression 'as' type ')'
         | '-' expression
         | '!' expression
         | expression ('*' | '%' | '/') expression
         | expression ('+' | '-') expression
         | expression ('>' | '>=' | '<' | '<=' | '!=' | '==') expression
         | expression ('&&' | '||') expression
+        | functionInvocation
         | ID
         | CHAR_CONSTANT
         | INT_CONSTANT
         | REAL_CONSTANT
-        ;
-
-definition: varDefinition
-           | funcDefinition
-           ;
-
-varDefinition: 'let' ID (',' ID)* ':' type
-              ;
-
-funcDefinition: 'function' ID '(' parameters ')' ':' (simple_type || 'void')
-              ;
-
-parameters: (ID ':' simple_type) (',' ID ':' simple_type)*
-            |
-            ;
-statement: 'log' (',' expression)* ';'
-         | 'input' (',' expression) * ';'
-         | expression '=' expression
-         |
         ;
 
 simple_type: 'char'
@@ -44,9 +58,12 @@ simple_type: 'char'
     ;
 
 type: simple_type
-    |
+    | '[' INT_CONSTANT ']' type
+    | '[' varDefinition* ']'
     ;
+
 //poner lo del main y al final de program antes de EOF
+
 //Lexical analysis
 WHITES : [ \n\t\r]+ ->skip
        ;
