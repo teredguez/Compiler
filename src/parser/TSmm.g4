@@ -1,6 +1,6 @@
 grammar TSmm;	
 
-program: definition+ EOF
+program: definition* mainDefinition EOF
        ;
 
 //Syntax analysis
@@ -62,7 +62,9 @@ type: simple_type
     | '[' varDefinition* ']'
     ;
 
-//poner lo del main y al final de program antes de EOF
+mainDefinition
+    : 'function' 'main' '(' ')' ':' 'void' '{' varDefinition* statement* '}'
+    ;
 
 //Lexical analysis
 WHITES : [ \n\t\r]+ ->skip
