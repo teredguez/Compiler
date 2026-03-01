@@ -9,16 +9,13 @@ import java.util.List;
 
 public class FunctionInvocation extends AbstractLocatable implements Statement, Expression {
 
-    private String name;
     private Variable variable;
     private List<Expression> expressionList;
-    @Override
-    public int getLine() {
-        return 0;
+
+    public FunctionInvocation(int line, int column, Variable variable, List<Expression> expressionList) {
+        super(line, column);
+        this.variable = variable;
+        this.expressionList = expressionList;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
 }

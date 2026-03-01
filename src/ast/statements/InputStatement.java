@@ -8,13 +8,9 @@ public class InputStatement extends AbstractLocatable implements Statement {
 
     private Expression expression;
 
-    @Override
-    public int getLine() {
-        return 0;
+    public InputStatement(int line, int column, Expression expression) {
+        super(line, column);
+        this.expression = expression;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
 }

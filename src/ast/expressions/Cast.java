@@ -9,13 +9,10 @@ public class Cast extends AbstractLocatable implements Expression {
     private Expression expression;
     private Type type;
 
-    @Override
-    public int getLine() {
-        return 0;
+    public Cast(int line, int column, Expression expression, Type type) {
+        super(line, column);
+        this.expression = expression;
+        this.type = type;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
 }

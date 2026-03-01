@@ -7,13 +7,9 @@ public class IntLiteral extends AbstractLocatable implements Expression {
 
     private int value;
 
-    @Override
-    public int getLine() {
-        return 0;
+    public IntLiteral(int line, int column, int value) {
+        super(line, column);
+        this.value = value;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
 }

@@ -5,13 +5,8 @@ import ast.locatables.Expression;
 
 public class LogicOperation extends BinaryOperation {
 
-    @Override
-    public int getLine() {
-        return 0;
+    public LogicOperation(int line, int column, Expression expression1, Expression expression2, String operator) {
+        super(line, column, expression1, expression2, operator);
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
 }

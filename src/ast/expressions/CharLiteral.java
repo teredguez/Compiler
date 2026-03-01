@@ -7,13 +7,9 @@ public class CharLiteral extends AbstractLocatable implements Expression {
 
     private char value;
 
-    @Override
-    public int getLine() {
-        return 0;
+    public CharLiteral(int line, int column, char value) {
+        super(line, column);
+        this.value = value;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
 }

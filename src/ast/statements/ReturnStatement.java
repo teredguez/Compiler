@@ -8,13 +8,9 @@ public class ReturnStatement extends AbstractLocatable implements Statement {
 
     private Expression returnExpression;
 
-    @Override
-    public int getLine() {
-        return 0;
+    public ReturnStatement(int line, int column, Expression returnExpression) {
+        super(line, column);
+        this.returnExpression = returnExpression;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
 }

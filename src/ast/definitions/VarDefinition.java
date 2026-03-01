@@ -7,23 +7,22 @@ import ast.locatables.Statement;
 
 public class VarDefinition extends AbstractLocatable implements Definition, Statement {
 
+    private String name;
+    private Type type;
+
+    public VarDefinition(int line, int column, Type type, String name) {
+        super(line, column);
+        this.type = type;
+        this.name = name;
+    }
+
     @Override
     public String getName() {
-        return "";
+        return name;
     }
 
     @Override
     public Type getType() {
-        return null;
-    }
-
-    @Override
-    public int getLine() {
-        return 0;
-    }
-
-    @Override
-    public int getColumn() {
-        return 0;
+        return type;
     }
 }

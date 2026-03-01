@@ -1,5 +1,13 @@
 // Generated from C:/Users/teres/IdeaProjects/DLP/src/parser/TSmm.g4 by ANTLR 4.13.2
 package parser;
+
+import ast.definitions.*;
+import ast.expressions.*;
+import ast.locatables.*;
+import ast.statements.*;
+import ast.types.*;
+import ast.*;
+
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -47,7 +55,7 @@ public class TSmmLexer extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'let'", "','", "':'", "';'", "'function'", "'('", "')'", "'void'", 
+			null, "'let'", "':'", "';'", "','", "'function'", "'('", "')'", "'void'", 
 			"'{'", "'}'", "'log'", "'input'", "'='", "'while'", "'if'", "'else'", 
 			"'return'", "'['", "']'", "'.'", "'as'", "'-'", "'!'", "'*'", "'%'", 
 			"'/'", "'+'", "'>'", "'>='", "'<'", "'<='", "'!='", "'=='", "'&&'", "'||'", 
@@ -214,8 +222,8 @@ public class TSmmLexer extends Lexer {
 		"\u0120\u0001\u0000\u0000\u0000Y\u0133\u0001\u0000\u0000\u0000[\u0135\u0001"+
 		"\u0000\u0000\u0000]\u0139\u0001\u0000\u0000\u0000_`\u0005l\u0000\u0000"+
 		"`a\u0005e\u0000\u0000ab\u0005t\u0000\u0000b\u0002\u0001\u0000\u0000\u0000"+
-		"cd\u0005,\u0000\u0000d\u0004\u0001\u0000\u0000\u0000ef\u0005:\u0000\u0000"+
-		"f\u0006\u0001\u0000\u0000\u0000gh\u0005;\u0000\u0000h\b\u0001\u0000\u0000"+
+		"cd\u0005:\u0000\u0000d\u0004\u0001\u0000\u0000\u0000ef\u0005;\u0000\u0000"+
+		"f\u0006\u0001\u0000\u0000\u0000gh\u0005,\u0000\u0000h\b\u0001\u0000\u0000"+
 		"\u0000ij\u0005f\u0000\u0000jk\u0005u\u0000\u0000kl\u0005n\u0000\u0000"+
 		"lm\u0005c\u0000\u0000mn\u0005t\u0000\u0000no\u0005i\u0000\u0000op\u0005"+
 		"o\u0000\u0000pq\u0005n\u0000\u0000q\n\u0001\u0000\u0000\u0000rs\u0005"+

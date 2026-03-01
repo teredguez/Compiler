@@ -6,17 +6,12 @@ import ast.locatables.Statement;
 
 public class Assignment extends AbstractLocatable implements Statement {
 
-    private Expression leftExpression;
-    private Expression rightExpression;
+    private Expression leftExpression,rightExpression;
 
-
-    @Override
-    public int getLine() {
-        return 0;
+    public Assignment(int line, int column, Expression leftExpression, Expression rightExpression) {
+        super(line, column);
+        this.leftExpression = leftExpression;
+        this.rightExpression = rightExpression;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
 }

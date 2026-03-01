@@ -1,1 +1,6 @@
-123 + x
+function teresa():void{
+let tere: int;
+tere = 123+x;
+}
+let tere:int;
+function main():void{}

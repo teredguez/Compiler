@@ -7,13 +7,16 @@ public class Variable extends AbstractLocatable implements Expression {
 
     private String name;
 
-    @Override
-    public int getLine() {
-        return 0;
+    public Variable(int line, int column, String name) {
+        super(line, column);
+        this.name = name;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -11,13 +11,10 @@ public class WhileStatement extends AbstractLocatable implements Statement {
     private Expression whileExpression;
     private List<Statement> whileBody;
 
-    @Override
-    public int getLine() {
-        return 0;
+    public WhileStatement(int line, int column, Expression whileExpression, List<Statement> whileBody) {
+        super(line, column);
+        this.whileExpression = whileExpression;
+        this.whileBody = whileBody;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
 }

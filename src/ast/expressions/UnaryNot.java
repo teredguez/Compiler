@@ -7,13 +7,10 @@ public class UnaryNot extends AbstractLocatable implements Expression {
 
     private Expression expression;
 
-    @Override
-    public int getLine() {
-        return 0;
+    public UnaryNot(int line, int column, Expression expression) {
+        super(line, column);
+        this.expression = expression;
     }
 
-    @Override
-    public int getColumn() {
-        return 0;
-    }
+
 }
