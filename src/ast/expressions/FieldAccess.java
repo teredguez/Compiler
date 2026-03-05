@@ -14,19 +14,5 @@ public class FieldAccess extends AbstractLocatable implements Expression {
         this.fieldName = fieldName;
     }
 
-    public Expression getExpression() {
-        return expression;
-    }
 
-    public void setExpression(Expression expression) {
-        this.expression = expression;
-    }
-
-    public String getField() {
-        return fieldName;
-    }
-
-    public void setField(String field) {
-        this.fieldName= field;
-    }
 }

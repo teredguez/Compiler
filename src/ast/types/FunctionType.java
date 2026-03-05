@@ -1,16 +1,16 @@
 package ast.types;
 
 import ast.Type;
-import ast.locatables.Definition;
+import ast.definitions.VarDefinition;
 
 import java.util.List;
 
 public class FunctionType implements Type {
 
     private Type returnType;
-    private List<Definition> param;
+    private List<VarDefinition> param;
 
-    public FunctionType(Type returnType, List<Definition> param) {
+    public FunctionType(Type returnType, List<VarDefinition> param) {
         this.returnType = returnType;
         this.param = param;
     }

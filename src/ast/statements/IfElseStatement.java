@@ -19,11 +19,4 @@ public class IfElseStatement extends AbstractLocatable implements Statement {
         this.ifBody = ifBody;
         this.elseBody = elseBody;
     }
-
-    public IfElseStatement(int line,int column,  Expression expression, List<Statement> ifBody){
-        super(line, column);
-        this.expression = expression;
-        this.ifBody = ifBody;
-        this.elseBody = new ArrayList<Statement>();
-    }
 }

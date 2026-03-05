@@ -1,6 +1,21 @@
-function teresa():void{
-let tere: int;
-tere = 123+x;
+// Array of Records
+let tere: [3] [
+    let id: int;
+    let letter: char;
+];
+
+// Record of Arrays
+let tere: [
+    let ids: [2] int;
+    let letters: [2] char;
+];
+
+//Record of Records
+let tere: [
+    let tere2: [
+        let id: int;
+    ];
+];
+
+function main():void{
 }
-let tere:int;
-function main():void{}
