@@ -241,24 +241,71 @@ simple_type returns [Type ast]:
     | 'number' { $ast = NumberType.getInstance(); }
     ;
 
-type returns [Type ast] locals [List<RecordField> recordsList = new ArrayList<>()]:
-    simple_type {$ast = $simple_type.ast;}
-     //ARRAY TYPE
-    | '[' INT_CONSTANT ']' type {
-            $ast = new ArrayType(LexerHelper.lexemeToInt($INT_CONSTANT.text),$type.ast);}
-     //RECORD TYPE
-    |  '[' ('let' ID variables ':' type ';' { $recordsList.add( new RecordField( $ID.getLine(),
-           $ID.getCharPositionInLine()+1,$ID.text,$type.ast));
-           for(Token id : $variables.ast) {
-              $recordsList.add(
-                  new RecordField(
-                      id.getLine(),
-                      id.getCharPositionInLine()+1,
-                      id.getText(),
-                      $type.ast
-                  )
-              );}
-           } )+ ']' {$ast = new RecordType($recordsList);}
+type returns [Type ast]
+locals [List<RecordField> recordsList = new ArrayList<RecordField>()]
+    : simple_type{ $ast = $simple_type.ast; }
+    | '[' n=INT_CONSTANT ']' t=type { $ast = new ArrayType(LexerHelper.lexemeToInt($n.getText()), $t.ast); }
+    | '['
+        (
+          'let' ID vars=variables ':' t=type ';'
+          {
+              boolean duplicated = false;
+
+              for (RecordField rf : $recordsList) {
+                  if (rf.getName().equals($ID.getText())) {
+                      duplicated = true;
+                      ErrorHandler.getInstance().addError(
+                          new ErrorType(
+                              $ID.text + " is already defined in this scope",
+                              new AbstractLocatable($ID.getLine(), $ID.getCharPositionInLine()+1) {}
+                          )
+                      );
+                      break;
+                  }
+              }
+
+              if (!duplicated) {
+                  $recordsList.add(
+                      new RecordField(
+                          $ID.getLine(),
+                          $ID.getCharPositionInLine()+1,
+                          $ID.getText(),
+                          $t.ast
+                      )
+                  );
+              }
+
+              for (Token id : $vars.ast) {
+                  duplicated = false;
+
+                  for (RecordField rf : $recordsList) {
+                      if (rf.getName().equals(id.getText())) {
+                          duplicated = true;
+                         ErrorHandler.getInstance().addError(
+                             new ErrorType(
+                                 $ID.getText() + " is already defined in this scope",
+                                 new AbstractLocatable($ID.getLine(), $ID.getCharPositionInLine()+1) {}
+                             )
+                         );
+                          break;
+                      }
+                  }
+
+                  if (!duplicated) {
+                      $recordsList.add(
+                          new RecordField(
+                              id.getLine(),
+                              id.getCharPositionInLine()+1,
+                              id.getText(),
+                              $t.ast
+                          )
+                      );
+                  }
+              }
+          }
+        )+
+      ']'
+      { $ast = new RecordType($recordsList); }
     ;
 
 mainDefinition returns[Definition ast]locals [Type returnType, List<VarDefinition> vars = new ArrayList<>(),

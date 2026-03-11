@@ -1,4 +1,4 @@
-// Generated from C:/Users/teres/IdeaProjects/DLP/src/parser/TSmm.g4 by ANTLR 4.13.2
+// Generated from C:/Users/teres/IdeaProjects/DLP_UO294178/src/parser/TSmm.g4 by ANTLR 4.13.2
 package parser;
 
 import ast.definitions.*;
@@ -1427,12 +1427,12 @@ public class TSmmParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class TypeContext extends ParserRuleContext {
 		public Type ast;
-		public List<RecordField> recordsList = new ArrayList<>();
+		public List<RecordField> recordsList = new ArrayList<RecordField>();
 		public Simple_typeContext simple_type;
-		public Token INT_CONSTANT;
-		public TypeContext type;
+		public Token n;
+		public TypeContext t;
 		public Token ID;
-		public VariablesContext variables;
+		public VariablesContext vars;
 		public Simple_typeContext simple_type() {
 			return getRuleContext(Simple_typeContext.class,0);
 		}
@@ -1472,7 +1472,7 @@ public class TSmmParser extends Parser {
 				{
 				setState(282);
 				((TypeContext)_localctx).simple_type = simple_type();
-				((TypeContext)_localctx).ast =  ((TypeContext)_localctx).simple_type.ast;
+				 ((TypeContext)_localctx).ast =  ((TypeContext)_localctx).simple_type.ast; 
 				}
 				break;
 			case 2:
@@ -1481,13 +1481,12 @@ public class TSmmParser extends Parser {
 				setState(285);
 				match(T__17);
 				setState(286);
-				((TypeContext)_localctx).INT_CONSTANT = match(INT_CONSTANT);
+				((TypeContext)_localctx).n = match(INT_CONSTANT);
 				setState(287);
 				match(T__18);
 				setState(288);
-				((TypeContext)_localctx).type = type();
-
-				            ((TypeContext)_localctx).ast =  new ArrayType(LexerHelper.lexemeToInt((((TypeContext)_localctx).INT_CONSTANT!=null?((TypeContext)_localctx).INT_CONSTANT.getText():null)),((TypeContext)_localctx).type.ast);
+				((TypeContext)_localctx).t = type();
+				 ((TypeContext)_localctx).ast =  new ArrayType(LexerHelper.lexemeToInt(((TypeContext)_localctx).n.getText()), ((TypeContext)_localctx).t.ast); 
 				}
 				break;
 			case 3:
@@ -1506,25 +1505,68 @@ public class TSmmParser extends Parser {
 					setState(293);
 					((TypeContext)_localctx).ID = match(ID);
 					setState(294);
-					((TypeContext)_localctx).variables = variables();
+					((TypeContext)_localctx).vars = variables();
 					setState(295);
 					match(T__1);
 					setState(296);
-					((TypeContext)_localctx).type = type();
+					((TypeContext)_localctx).t = type();
 					setState(297);
 					match(T__2);
-					 _localctx.recordsList.add( new RecordField( ((TypeContext)_localctx).ID.getLine(),
-					           ((TypeContext)_localctx).ID.getCharPositionInLine()+1,(((TypeContext)_localctx).ID!=null?((TypeContext)_localctx).ID.getText():null),((TypeContext)_localctx).type.ast));
-					           for(Token id : ((TypeContext)_localctx).variables.ast) {
-					              _localctx.recordsList.add(
-					                  new RecordField(
-					                      id.getLine(),
-					                      id.getCharPositionInLine()+1,
-					                      id.getText(),
-					                      ((TypeContext)_localctx).type.ast
-					                  )
-					              );}
-					           
+
+					              boolean duplicated = false;
+
+					              for (RecordField rf : _localctx.recordsList) {
+					                  if (rf.getName().equals(((TypeContext)_localctx).ID.getText())) {
+					                      duplicated = true;
+					                      ErrorHandler.getInstance().addError(
+					                          new ErrorType(
+					                              (((TypeContext)_localctx).ID!=null?((TypeContext)_localctx).ID.getText():null) + " is already defined in this scope",
+					                              new AbstractLocatable(((TypeContext)_localctx).ID.getLine(), ((TypeContext)_localctx).ID.getCharPositionInLine()+1) {}
+					                          )
+					                      );
+					                      break;
+					                  }
+					              }
+
+					              if (!duplicated) {
+					                  _localctx.recordsList.add(
+					                      new RecordField(
+					                          ((TypeContext)_localctx).ID.getLine(),
+					                          ((TypeContext)_localctx).ID.getCharPositionInLine()+1,
+					                          ((TypeContext)_localctx).ID.getText(),
+					                          ((TypeContext)_localctx).t.ast
+					                      )
+					                  );
+					              }
+
+					              for (Token id : ((TypeContext)_localctx).vars.ast) {
+					                  duplicated = false;
+
+					                  for (RecordField rf : _localctx.recordsList) {
+					                      if (rf.getName().equals(id.getText())) {
+					                          duplicated = true;
+					                         ErrorHandler.getInstance().addError(
+					                             new ErrorType(
+					                                 ((TypeContext)_localctx).ID.getText() + " is already defined in this scope",
+					                                 new AbstractLocatable(((TypeContext)_localctx).ID.getLine(), ((TypeContext)_localctx).ID.getCharPositionInLine()+1) {}
+					                             )
+					                         );
+					                          break;
+					                      }
+					                  }
+
+					                  if (!duplicated) {
+					                      _localctx.recordsList.add(
+					                          new RecordField(
+					                              id.getLine(),
+					                              id.getCharPositionInLine()+1,
+					                              id.getText(),
+					                              ((TypeContext)_localctx).t.ast
+					                          )
+					                      );
+					                  }
+					              }
+					          
 					}
 					}
 					setState(302); 
@@ -1533,7 +1575,7 @@ public class TSmmParser extends Parser {
 				} while ( _la==T__0 );
 				setState(304);
 				match(T__18);
-				((TypeContext)_localctx).ast =  new RecordType(_localctx.recordsList);
+				 ((TypeContext)_localctx).ast =  new RecordType(_localctx.recordsList); 
 				}
 				break;
 			}
