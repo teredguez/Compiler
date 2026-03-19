@@ -1,6 +1,7 @@
 package ast.types;
 
 import ast.Type;
+import ast.Visitor;
 
 public class CharType implements Type {
 
@@ -10,5 +11,10 @@ public class CharType implements Type {
 
     public static CharType getInstance() {
         return i;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
+        return v.visit(this, param);
     }
 }

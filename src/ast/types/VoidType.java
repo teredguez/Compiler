@@ -1,6 +1,7 @@
 package ast.types;
 
 import ast.Type;
+import ast.Visitor;
 
 public class VoidType implements Type {
 
@@ -10,6 +11,11 @@ public class VoidType implements Type {
 
     public static VoidType getInstance() {
         return i;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
+        return v.visit(this, param);
     }
 
 }

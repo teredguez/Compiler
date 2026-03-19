@@ -1,9 +1,10 @@
 package ast.expressions;
 
+import ast.Visitor;
 import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 
-public class FieldAccess extends AbstractLocatable implements Expression {
+public class FieldAccess extends AbstractExpression {
 
     private String fieldName;
     private Expression expression;
@@ -14,5 +15,16 @@ public class FieldAccess extends AbstractLocatable implements Expression {
         this.fieldName = fieldName;
     }
 
+    public String getFieldName() {
+        return fieldName;
+    }
 
+    public Expression getExpression() {
+        return expression;
+    }
+
+    @Override
+    public <RT,PT> RT accept(Visitor<RT, PT> v, PT param) {
+        return v.visit(this, param);
+    }
 }

@@ -3,7 +3,7 @@ package ast.expressions;
 import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 
-public abstract class AbstractBinaryOperation extends AbstractLocatable implements Expression {
+public abstract class AbstractBinaryOperation extends AbstractExpression {
 
     protected Expression expression1, expression2;
     protected String operator;
@@ -13,6 +13,14 @@ public abstract class AbstractBinaryOperation extends AbstractLocatable implemen
         this.expression1 = expression1;
         this.expression2 = expression2;
         this.operator = operator;
+    }
+
+    public Expression getExpression1() {
+        return expression1;
+    }
+
+    public Expression getExpression2() {
+        return expression2;
     }
 }
 

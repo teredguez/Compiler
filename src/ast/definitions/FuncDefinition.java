@@ -1,6 +1,7 @@
 package ast.definitions;
 
 import ast.Type;
+import ast.Visitor;
 import ast.locatables.Definition;
 import ast.locatables.Statement;
 
@@ -17,4 +18,16 @@ public class FuncDefinition extends AbstractDefinition{
         this.variableList = variableList;
     }
 
+    public List<Statement> getStatementList() {
+        return statementList;
+    }
+
+    public List<VarDefinition> getVariableList() {
+        return variableList;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
+        return v.visit(this, param);
+    }
 }

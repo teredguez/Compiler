@@ -1,5 +1,6 @@
 package ast.statements;
 
+import ast.Visitor;
 import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 import ast.locatables.Statement;
@@ -18,5 +19,22 @@ public class IfElseStatement extends AbstractLocatable implements Statement {
         this.expression = expression;
         this.ifBody = ifBody;
         this.elseBody = elseBody;
+    }
+
+    public Expression getExpression() {
+        return expression;
+    }
+
+    public List<Statement> getIfBody() {
+        return ifBody;
+    }
+
+    public List<Statement> getElseBody() {
+        return elseBody;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
+        return v.visit(this, param);
     }
 }

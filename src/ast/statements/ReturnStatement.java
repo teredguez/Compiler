@@ -1,5 +1,6 @@
 package ast.statements;
 
+import ast.Visitor;
 import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 import ast.locatables.Statement;
@@ -13,4 +14,12 @@ public class ReturnStatement extends AbstractLocatable implements Statement {
         this.returnExpression = returnExpression;
     }
 
+    public Expression getReturnExpression() {
+        return returnExpression;
+    }
+
+    @Override
+    public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
+        return v.visit(this, param);
+    }
 }
