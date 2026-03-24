@@ -1,12 +1,10 @@
 package ast.statements;
 
-import ast.Visitor;
+import semantic.Visitor;
 import ast.locatables.AbstractLocatable;
 import ast.locatables.Expression;
 import ast.locatables.Statement;
-import kotlin.collections.EmptyList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class IfElseStatement extends AbstractLocatable implements Statement {

@@ -1518,12 +1518,9 @@ public class TSmmParser extends Parser {
 					              for (RecordField rf : _localctx.recordsList) {
 					                  if (rf.getName().equals(((TypeContext)_localctx).ID.getText())) {
 					                      duplicated = true;
-					                      ErrorHandler.getInstance().addError(
-					                          new ErrorType(
-					                              (((TypeContext)_localctx).ID!=null?((TypeContext)_localctx).ID.getText():null) + " is already defined in this scope",
-					                              new AbstractLocatable(((TypeContext)_localctx).ID.getLine(), ((TypeContext)_localctx).ID.getCharPositionInLine()+1) {}
-					                          )
-					                      );
+					                      new ErrorType(
+					                          (((TypeContext)_localctx).ID!=null?((TypeContext)_localctx).ID.getText():null) + " is already defined in this scope",
+					                          rf);
 					                      break;
 					                  }
 					              }
@@ -1537,34 +1534,6 @@ public class TSmmParser extends Parser {
 					                          ((TypeContext)_localctx).t.ast
 					                      )
 					                  );
-					              }
-
-					              for (Token id : ((TypeContext)_localctx).vars.ast) {
-					                  duplicated = false;
-
-					                  for (RecordField rf : _localctx.recordsList) {
-					                      if (rf.getName().equals(id.getText())) {
-					                          duplicated = true;
-					                         ErrorHandler.getInstance().addError(
-					                             new ErrorType(
-					                                 ((TypeContext)_localctx).ID.getText() + " is already defined in this scope",
-					                                 new AbstractLocatable(((TypeContext)_localctx).ID.getLine(), ((TypeContext)_localctx).ID.getCharPositionInLine()+1) {}
-					                             )
-					                         );
-					                          break;
-					                      }
-					                  }
-
-					                  if (!duplicated) {
-					                      _localctx.recordsList.add(
-					                          new RecordField(
-					                              id.getLine(),
-					                              id.getCharPositionInLine()+1,
-					                              id.getText(),
-					                              ((TypeContext)_localctx).t.ast
-					                          )
-					                      );
-					                  }
 					              }
 					          
 					}

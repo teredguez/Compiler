@@ -20,4 +20,6 @@ public abstract class AbstractExpression extends AbstractLocatable implements Ex
     public boolean getLvalue() {
         return lvalue;
     }
+
+
 }

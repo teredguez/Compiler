@@ -1,8 +1,7 @@
 package ast.definitions;
 
 import ast.Type;
-import ast.Visitor;
-import ast.locatables.Definition;
+import semantic.Visitor;
 import ast.locatables.Statement;
 
 import java.util.List;

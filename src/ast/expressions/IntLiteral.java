@@ -1,8 +1,6 @@
 package ast.expressions;
 
-import ast.Visitor;
-import ast.locatables.AbstractLocatable;
-import ast.locatables.Expression;
+import semantic.Visitor;
 
 public class IntLiteral extends AbstractExpression {
 

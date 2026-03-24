@@ -22,8 +22,10 @@ public class ErrorHandler {
     }
 
     public void showErrors(PrintStream str){
+        int i = 1;
         for(ErrorType err: errorsList){
-            str.println(err);
+            str.println(i + ". " + err);
+            i++;
         }
     }
 

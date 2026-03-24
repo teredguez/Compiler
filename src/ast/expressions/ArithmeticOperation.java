@@ -1,6 +1,6 @@
 package ast.expressions;
 
-import ast.Visitor;
+import semantic.Visitor;
 import ast.locatables.Expression;
 
 public class ArithmeticOperation extends AbstractBinaryOperation {

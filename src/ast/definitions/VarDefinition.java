@@ -1,7 +1,7 @@
 package ast.definitions;
 
 import ast.Type;
-import ast.Visitor;
+import semantic.Visitor;
 import ast.locatables.Statement;
 
 public class VarDefinition extends AbstractDefinition implements Statement {
@@ -10,6 +10,10 @@ public class VarDefinition extends AbstractDefinition implements Statement {
         super(line, column, type, name);
     }
 
+    //For symbolTable test
+    public VarDefinition(int line, int column,  String name,Type type) {
+        super(line, column, type, name);
+    }
 
     @Override
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {

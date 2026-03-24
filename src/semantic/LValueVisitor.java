@@ -88,7 +88,7 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
     public Void visit(Assignment a, Void param) {
         super.visit( a, param );
         if(!a.getLeftExpression().getLvalue()){
-            new ErrorType("Invalid value for the left hand side of the assignment", a.getLeftExpression() );
+            new ErrorType("Invalid value for the left hand side of the assignment ", a );
         }
         return null;
     }

@@ -1,3 +1,4 @@
+import semantic.IdentificationVisitor;
 import semantic.LValueVisitor;
 import org.antlr.v4.runtime.*;
 import introspector.model.IntrospectorModel;
@@ -6,7 +7,7 @@ import ast.ASTNode;
 import ast.ErrorHandler;
 import parser.TSmmLexer;
 import parser.TSmmParser;
-import ast.Visitor;
+import semantic.Visitor;
 
 public class Main {
 
@@ -27,6 +28,9 @@ public class Main {
 
 		Visitor lValueVisitor = new LValueVisitor();
 		ast.accept(lValueVisitor,null);
+
+		Visitor identificationVisitor = new IdentificationVisitor();
+		ast.accept(identificationVisitor, null);
 
 		// * Check errors
 		if(ErrorHandler.getInstance().anyError()){

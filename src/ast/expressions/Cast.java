@@ -1,8 +1,7 @@
 package ast.expressions;
 
 import ast.Type;
-import ast.Visitor;
-import ast.locatables.AbstractLocatable;
+import semantic.Visitor;
 import ast.locatables.Expression;
 
 public class Cast extends AbstractExpression {

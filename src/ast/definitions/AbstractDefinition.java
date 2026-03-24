@@ -6,6 +6,7 @@ import ast.locatables.Definition;
 
 public abstract class AbstractDefinition extends AbstractLocatable implements Definition {
 
+    int scope;
     private String name;
     private Type type;
 
@@ -13,6 +14,16 @@ public abstract class AbstractDefinition extends AbstractLocatable implements De
         super(line, column);
         this.name = name;
         this.type = type;
+    }
+
+    @Override
+    public int getScope() {
+        return scope;
+    }
+
+    @Override
+    public void setScope(int scope) {
+        this.scope = scope;
     }
 
     @Override

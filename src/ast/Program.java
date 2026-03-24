@@ -1,7 +1,7 @@
 package ast;
 
 import ast.locatables.Definition;
-import ast.locatables.Expression;
+import semantic.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,12 +1,12 @@
 package ast.expressions;
 
-import ast.Visitor;
-import ast.locatables.AbstractLocatable;
-import ast.locatables.Expression;
+import semantic.Visitor;
+import ast.locatables.Definition;
 
 public class Variable extends AbstractExpression {
 
     private String name;
+    private Definition definition;
 
     public Variable(int line, int column, String name) {
         super(line, column);
@@ -19,6 +19,14 @@ public class Variable extends AbstractExpression {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Definition getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(Definition definition) {
+        this.definition = definition;
     }
 
     @Override

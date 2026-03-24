@@ -1,7 +1,6 @@
 package semantic;
 
 import ast.Program;
-import ast.Visitor;
 import ast.definitions.FuncDefinition;
 import ast.definitions.VarDefinition;
 import ast.expressions.*;
