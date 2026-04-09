@@ -1,9 +1,10 @@
 package ast.types;
 
+import ast.Locatable;
 import ast.Type;
 import semantic.Visitor;
 
-public class IntType implements Type {
+public class IntType extends AbstractType {
 
     private static final IntType i = new IntType();
 
@@ -18,4 +19,64 @@ public class IntType implements Type {
         return v.visit(this, param);
     }
 
+    @Override
+    public String toString() {
+        return "IntType";
+    }
+
+    @Override
+    public void mustBeBuiltIn(Locatable l) {
+        //IntType is built in
+    }
+
+    @Override
+    public void mustPromoteTo(Type t, Locatable l) {
+        if(!(t instanceof IntType || t instanceof CharType || t instanceof NumberType))
+            super.mustPromoteTo(t, l);
+    }
+
+    @Override
+    public Type comparison(Type t, Locatable l) {
+        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
+            return this;
+        if(t instanceof ErrorType){
+            return t;
+        }
+        return super.comparison(t, l);
+    }
+
+    @Override
+    public Type arithmetic(Locatable l) {
+        return this;
+    }
+
+    @Override
+    public Type arithmetic(Type t, Locatable l) {
+        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
+            return this;
+        if(t instanceof ErrorType){
+            return t;
+        }
+        return super.arithmetic(t, l);
+    }
+
+    @Override
+    public void mustBeLogical(Locatable l) {
+        //It is logical
+    }
+
+    @Override
+    public Type logic(Locatable l) {
+        return this;
+    }
+
+    @Override
+    public Type canBeCastedTo(Type t, Locatable l) {
+        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
+            return this;
+        if(t instanceof ErrorType){
+            return t;
+        }
+        return super.canBeCastedTo(t,l);
+    }
 }

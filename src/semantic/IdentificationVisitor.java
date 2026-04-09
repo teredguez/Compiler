@@ -22,10 +22,10 @@ public class IdentificationVisitor extends AbstractVisitor<Void, Void>{
 
     @Override
     public Void visit(VarDefinition varDef, Void param){
+        super.visit(varDef, param);
         if(!symbolTable.insert(varDef)){
            new ErrorType("Variable " + varDef.getName() + " already defined", varDef);
         }
-        super.visit(varDef, param);
         return null;
     }
 

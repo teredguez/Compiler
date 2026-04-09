@@ -1,8 +1,8 @@
 package semantic;
 
-import ast.Program;
 import ast.expressions.*;
 import ast.statements.Assignment;
+import ast.statements.FunctionInvocation;
 import ast.statements.InputStatement;
 import ast.types.ErrorType;
 
@@ -29,7 +29,8 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
     @Override
     public Void visit(LogicOperation l, Void param) {
         l.setLvalue(false);
-        return super.visit(l,param);    }
+        return super.visit(l,param);
+    }
 
     @Override
     public Void visit(IntLiteral i, Void param) {
@@ -80,15 +81,16 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
     }
 
     @Override
-    public Void visit(Program p, Void param) {
-        return super.visit(p,param);
+    public Void visit(FunctionInvocation p, Void param) {
+        p.setLvalue(false);
+        return super.visit( p, param );
     }
 
     @Override
     public Void visit(Assignment a, Void param) {
         super.visit( a, param );
         if(!a.getLeftExpression().getLvalue()){
-            new ErrorType("Invalid value for the left hand side of the assignment ", a );
+            new ErrorType("Invalid value for the left hand side of the assignment ", a.getLeftExpression() );
         }
         return null;
     }
@@ -101,4 +103,5 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
         }
         return null;
     }
+
 }

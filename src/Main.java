@@ -7,6 +7,7 @@ import ast.ASTNode;
 import ast.ErrorHandler;
 import parser.TSmmLexer;
 import parser.TSmmParser;
+import semantic.TypeCheckingVisitor;
 import semantic.Visitor;
 
 public class Main {
@@ -31,6 +32,9 @@ public class Main {
 
 		Visitor identificationVisitor = new IdentificationVisitor();
 		ast.accept(identificationVisitor, null);
+
+		Visitor typecheckingVisitor = new TypeCheckingVisitor();
+		ast.accept(typecheckingVisitor,null);
 
 		// * Check errors
 		if(ErrorHandler.getInstance().anyError()){

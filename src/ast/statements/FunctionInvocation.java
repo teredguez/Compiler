@@ -1,5 +1,6 @@
 package ast.statements;
 
+import ast.Type;
 import semantic.Visitor;
 import ast.expressions.Variable;
 import ast.locatables.AbstractLocatable;
@@ -12,6 +13,7 @@ public class FunctionInvocation extends AbstractLocatable implements Statement, 
 
     private Variable variable;
     private List<Expression> expressionList;
+    private Type type;
 
     public FunctionInvocation(int line, int column, Variable variable, List<Expression> expressionList) {
         super(line, column);
@@ -35,6 +37,15 @@ public class FunctionInvocation extends AbstractLocatable implements Statement, 
 
     public List<Expression> getExpressionList() {
         return expressionList;
+    }
+
+    @Override
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     @Override

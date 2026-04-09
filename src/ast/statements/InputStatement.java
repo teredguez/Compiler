@@ -18,6 +18,7 @@ public class InputStatement extends AbstractLocatable implements Statement {
         return expression;
     }
 
+
     @Override
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
         return v.visit(this, param);

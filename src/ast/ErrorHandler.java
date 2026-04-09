@@ -21,11 +21,19 @@ public class ErrorHandler {
         return !errorsList.isEmpty();
     }
 
-    public void showErrors(PrintStream str){
-        int i = 1;
-        for(ErrorType err: errorsList){
-            str.println(i + ". " + err);
-            i++;
+    public void showErrors(PrintStream str) {
+        //Orders the errors by line
+        errorsList.sort((e1, e2) -> {
+            if (e1.getLocation().getLine() != e2.getLocation().getLine()) {
+                return Integer.compare(e1.getLocation().getLine(), e2.getLocation().getLine());
+            }
+            return Integer.compare(e1.getLocation().getColumn(), e2.getLocation().getColumn());
+        });
+
+        int count = 1;
+        for (ErrorType err : errorsList) {
+            str.println(count + ". " + err);
+            count++;
         }
     }
 

@@ -23,6 +23,7 @@ public class ArrayAccess extends AbstractExpression {
 
     @Override
     public <RT,PT> RT accept(Visitor<RT, PT> v, PT param) {
-        return null;
+        return v.visit(this, param);
     }
+
 }

@@ -1,9 +1,10 @@
 package ast.types;
 
+import ast.Locatable;
 import ast.Type;
 import semantic.Visitor;
 
-public class NumberType implements Type {
+public class NumberType extends AbstractType {
 
     private static final NumberType i = new NumberType();
 
@@ -16,5 +17,47 @@ public class NumberType implements Type {
     @Override
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
         return v.visit(this, param);
+    }
+
+    @Override
+    public String toString() {
+        return "NumberType";
+    }
+
+    @Override
+    public Type arithmetic(Type t, Locatable l) {
+        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
+            return this;
+        if(t instanceof ErrorType){
+            return t;
+        }
+        return super.arithmetic(t, l);
+    }
+
+    @Override
+    public Type arithmetic(Locatable l) {
+        return this;
+    }
+
+    @Override
+    public Type comparison(Type t, Locatable l) {
+        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
+            return this;
+        if(t instanceof ErrorType){
+            return t;
+        }
+        return super.comparison(t, l);
+
+    }
+
+    @Override
+    public void mustPromoteTo(Type t, Locatable l) {
+        if(!(t instanceof NumberType))
+            super.mustPromoteTo(t, l);
+    }
+
+    @Override
+    public void mustBeBuiltIn(Locatable l) {
+        //NumberType is built in
     }
 }

@@ -127,6 +127,7 @@ public class AbstractVisitor<RT, PT> implements Visitor<RT, PT> {
         for(var statement : ie.getElseBody()){
             statement.accept(this, param);
         }
+        ie.getExpression().accept(this,param);
         return null;
     }
 
