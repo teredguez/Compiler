@@ -46,4 +46,9 @@ public class ArrayType extends AbstractType {
             super.mustBeLogical(l);
         }
     }
+
+    @Override
+    public int numberOfBytes() {
+        return elementType.numberOfBytes() * size;
+    }
 }

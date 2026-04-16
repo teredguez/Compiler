@@ -25,7 +25,7 @@ public class VoidType extends AbstractType {
     }
 
     @Override
-    public void mustBeBuiltIn(Locatable l) {
-        //VoidType is built in
+    public int numberOfBytes() {
+        throw new UnsupportedOperationException("Number of Bytes should not be calculated for Void Type");
     }
 }

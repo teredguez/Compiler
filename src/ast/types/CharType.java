@@ -53,4 +53,9 @@ public class CharType extends AbstractType {
     public Type logic(Locatable l) {
         return this;
     }
+
+    @Override
+    public int numberOfBytes() {
+        return 1;
+    }
 }

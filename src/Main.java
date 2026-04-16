@@ -1,3 +1,4 @@
+import codeGeneration.OffsetVisitor;
 import semantic.IdentificationVisitor;
 import semantic.LValueVisitor;
 import org.antlr.v4.runtime.*;
@@ -36,6 +37,7 @@ public class Main {
 		Visitor typecheckingVisitor = new TypeCheckingVisitor();
 		ast.accept(typecheckingVisitor,null);
 
+
 		// * Check errors
 		if(ErrorHandler.getInstance().anyError()){
 			// * Show errors
@@ -45,6 +47,9 @@ public class Main {
 			// * The AST is shown
 			IntrospectorModel model=new IntrospectorModel("Program", ast);
 			new IntrospectorView("Introspector", model);
+			//Create offset visitor only when there are no errors
+			Visitor offsetVisitor = new OffsetVisitor();
+			ast.accept(offsetVisitor,null);
 		}
 	}
 }

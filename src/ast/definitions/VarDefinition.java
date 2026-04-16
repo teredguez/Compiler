@@ -6,6 +6,8 @@ import ast.locatables.Statement;
 
 public class VarDefinition extends AbstractDefinition implements Statement {
 
+    private int offset;
+
     public VarDefinition(int line, int column, Type type, String name) {
         super(line, column, type, name);
     }
@@ -13,6 +15,14 @@ public class VarDefinition extends AbstractDefinition implements Statement {
     //For symbolTable test
     public VarDefinition(int line, int column,  String name,Type type) {
         super(line, column, type, name);
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
     @Override

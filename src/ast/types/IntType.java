@@ -79,4 +79,9 @@ public class IntType extends AbstractType {
         }
         return super.canBeCastedTo(t,l);
     }
+
+    @Override
+    public int numberOfBytes() {
+        return 2;
+    }
 }

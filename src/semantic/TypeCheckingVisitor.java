@@ -138,8 +138,7 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
             f.setType(new ErrorType("Cannot invoke a non-function type", f));
             return null;
         }
-        f.setType(f.getVariable().getType().parenthesis(f.getExpressionList().stream().map(Expression::getType)
-                .toList(), f));
+        f.setType(f.getVariable().getType().parenthesis(f.getExpressionList().stream().map(Expression::getType).toList(), f));
         return null;
     }
 
@@ -154,7 +153,6 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
     public Void visit(FuncDefinition f, Type param) {
         FunctionType fType = (FunctionType) f.getType();
         super.visit(f, fType.getReturnType());
-        f.getVariableList().forEach(variable -> variable.getType().mustBeBuiltIn(variable));
         f.getType().mustBeBuiltIn(f);
         return null;
     }

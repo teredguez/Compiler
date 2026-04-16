@@ -72,4 +72,9 @@ public class AbstractType implements Type {
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
         return null;
     }
+
+    @Override
+    public int numberOfBytes() {
+        return 0;
+    }
 }

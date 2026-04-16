@@ -18,6 +18,7 @@ public class RecordType extends AbstractType {
         return recordFieldList;
     }
 
+
     @Override
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
         return v.visit(this, param);
@@ -36,5 +37,14 @@ public class RecordType extends AbstractType {
             }
         }
         return super.dot(s,l);
+    }
+
+    @Override
+    public int numberOfBytes() {
+        int sum = 0;
+        for(RecordField rf : recordFieldList){
+            sum +=rf.getType().numberOfBytes();
+        }
+        return sum;
     }
 }
