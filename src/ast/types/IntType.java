@@ -21,7 +21,7 @@ public class IntType extends AbstractType {
 
     @Override
     public String toString() {
-        return "IntType";
+        return "int";
     }
 
     @Override
@@ -31,7 +31,7 @@ public class IntType extends AbstractType {
 
     @Override
     public void mustPromoteTo(Type t, Locatable l) {
-        if(!(t instanceof IntType || t instanceof CharType || t instanceof NumberType))
+        if(!(t instanceof IntType || t instanceof NumberType || t instanceof ErrorType))
             super.mustPromoteTo(t, l);
     }
 
@@ -52,8 +52,10 @@ public class IntType extends AbstractType {
 
     @Override
     public Type arithmetic(Type t, Locatable l) {
-        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
-            return this;
+        if(t instanceof IntType || t instanceof CharType )
+            return IntType.getInstance();
+        if (t instanceof NumberType)
+            return NumberType.getInstance();
         if(t instanceof ErrorType){
             return t;
         }
@@ -73,7 +75,7 @@ public class IntType extends AbstractType {
     @Override
     public Type canBeCastedTo(Type t, Locatable l) {
         if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
-            return this;
+            return t;
         if(t instanceof ErrorType){
             return t;
         }
@@ -81,7 +83,19 @@ public class IntType extends AbstractType {
     }
 
     @Override
+    public Type logic(Type t, Locatable l) {
+        if (t instanceof IntType || t instanceof CharType) {
+            return this;
+        }
+        return super.logic(t, l);
+    }
+    @Override
     public int numberOfBytes() {
         return 2;
+    }
+
+    @Override
+    public char suffix() {
+        return 'i';
     }
 }

@@ -22,5 +22,9 @@ public abstract class AbstractBinaryOperation extends AbstractExpression {
     public Expression getExpression2() {
         return expression2;
     }
+
+    public String getOperator() {
+        return operator;
+    }
 }
 

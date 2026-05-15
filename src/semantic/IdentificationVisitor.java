@@ -3,6 +3,7 @@ package semantic;
 import ast.definitions.FuncDefinition;
 import ast.definitions.VarDefinition;
 import ast.expressions.Variable;
+import ast.locatables.Definition;
 import ast.types.ErrorType;
 import symboltable.SymbolTable;
 
@@ -31,10 +32,11 @@ public class IdentificationVisitor extends AbstractVisitor<Void, Void>{
 
     @Override
     public Void visit(Variable v, Void param){
-       if(symbolTable.find(v.getName())== null){
+       Definition def = symbolTable.find(v.getName());
+       if(def == null){
            new ErrorType("Definition for variable " + v.getName() + " not found", v);
        }else{
-           v.setDefinition(symbolTable.find(v.getName()));
+           v.setDefinition(def);
        }
        return null;
     }

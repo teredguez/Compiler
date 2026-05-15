@@ -21,7 +21,7 @@ public class NumberType extends AbstractType {
 
     @Override
     public String toString() {
-        return "NumberType";
+        return "real";
     }
 
     @Override
@@ -42,17 +42,26 @@ public class NumberType extends AbstractType {
     @Override
     public Type comparison(Type t, Locatable l) {
         if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
-            return this;
+            return IntType.getInstance();
         if(t instanceof ErrorType){
             return t;
         }
         return super.comparison(t, l);
+    }
 
+    @Override
+    public Type canBeCastedTo(Type t, Locatable l) {
+        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
+            return t;
+        if(t instanceof ErrorType){
+            return t;
+        }
+        return super.canBeCastedTo(t,l);
     }
 
     @Override
     public void mustPromoteTo(Type t, Locatable l) {
-        if(!(t instanceof NumberType))
+        if(!(t instanceof NumberType || t instanceof ErrorType))
             super.mustPromoteTo(t, l);
     }
 
@@ -64,5 +73,10 @@ public class NumberType extends AbstractType {
     @Override
     public int numberOfBytes() {
         return 4;
+    }
+
+    @Override
+    public char suffix() {
+        return 'f';
     }
 }

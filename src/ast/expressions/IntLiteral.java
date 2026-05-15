@@ -16,6 +16,10 @@ public class IntLiteral extends AbstractExpression {
         return ""+value;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     @Override
     public <RT,PT> RT accept(Visitor<RT, PT> v, PT param) {
         return v.visit(this, param);

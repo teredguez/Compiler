@@ -4,7 +4,7 @@ import ast.Type;
 import semantic.Visitor;
 import ast.locatables.Expression;
 
-public class Cast extends AbstractExpression {
+public class   Cast extends AbstractExpression {
 
     private Expression expression;
     private Type type;

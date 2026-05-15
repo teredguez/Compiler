@@ -1,5 +1,6 @@
 package codeGeneration;
 
+import ast.definitions.FuncDefinition;
 import ast.definitions.VarDefinition;
 import ast.locatables.Definition;
 import ast.types.FunctionType;
@@ -32,7 +33,7 @@ public class OffsetVisitor extends AbstractVisitor<Void,Void> {
         int paramBytesSum = 4;
         List<VarDefinition> params = ft.getParam();
 
-        //reverser because we need the following param, not the previous
+        //reversed because we need the following param, not the previous
         for(int i = params.size() - 1; i >= 0; i--) {
             VarDefinition varDef = (VarDefinition) params.get(i);
             varDef.setOffset(paramBytesSum);
@@ -49,6 +50,13 @@ public class OffsetVisitor extends AbstractVisitor<Void,Void> {
             rf.setOffset(recordFieldBytesSym);
             recordFieldBytesSym += rf.getType().numberOfBytes();
         }
+        return null;
+    }
+
+    @Override
+    public Void visit(FuncDefinition fd, Void param) {
+        this.localBytesSum = 0;
+        super.visit(fd, param);
         return null;
     }
 }

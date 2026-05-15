@@ -47,4 +47,12 @@ public class RecordType extends AbstractType {
         }
         return sum;
     }
+
+    public RecordField getField(String fieldName) {
+        return recordFieldList.stream()
+                .filter(rf -> rf.getName()
+                        .equals(fieldName))
+                .findFirst()
+                .orElse(null);
+    }
 }

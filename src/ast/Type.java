@@ -18,4 +18,8 @@ public interface Type extends ASTNode{
     public Type canBeCastedTo(Type t, Locatable l);
 
     public int numberOfBytes();
+
+    public char suffix();
 }
+
+

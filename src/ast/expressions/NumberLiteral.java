@@ -11,6 +11,10 @@ public class NumberLiteral extends AbstractExpression {
         this.value = value;
     }
 
+    public double getValue() {
+        return value;
+    }
+
     @Override
     public <RT,PT> RT accept(Visitor<RT, PT> v, PT param) {
         return v.visit(this, param);

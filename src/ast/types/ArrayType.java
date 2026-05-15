@@ -34,17 +34,10 @@ public class ArrayType extends AbstractType {
 
     @Override
     public Type squareBrackets(Type t, Locatable l) {
-        if(!(t instanceof IntType)){
+        if(!(t instanceof IntType || t instanceof CharType)){
             return super.squareBrackets(t, l);
         }
         return this.elementType;
-    }
-
-    @Override
-    public void mustBeLogical(Locatable l) {
-        if(elementType != IntType.getInstance()) {
-            super.mustBeLogical(l);
-        }
     }
 
     @Override

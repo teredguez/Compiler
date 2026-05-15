@@ -21,7 +21,12 @@ public class CharType extends AbstractType {
 
     @Override
     public String toString() {
-        return "CharType";
+        return "char";
+    }
+
+    @Override
+    public void mustBeLogical(Locatable l) {
+        //It is logical
     }
 
     @Override
@@ -31,31 +36,67 @@ public class CharType extends AbstractType {
 
     @Override
     public void mustPromoteTo(Type t, Locatable l) {
-        if(!(t instanceof IntType || t instanceof CharType || t instanceof NumberType))
+        if(!(t instanceof IntType || t instanceof CharType || t instanceof NumberType || t instanceof ErrorType))
             super.mustPromoteTo(t, l);
     }
 
     @Override
+    public Type arithmetic(Locatable l) {
+        return IntType.getInstance();
+    }
+
+    @Override
     public Type arithmetic(Type t, Locatable l) {
-        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
-            return this;
+        if(t instanceof IntType || t instanceof CharType )
+            return IntType.getInstance();
+        if (t instanceof NumberType)
+            return NumberType.getInstance();
         if(t instanceof ErrorType){
             return t;
         }
-        return super.arithmetic(t, l);    }
+        return super.arithmetic(t, l);
+    }
 
     @Override
     public Type comparison(Type t, Locatable l) {
+        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
+            return IntType.getInstance();
+        if(t instanceof ErrorType){
+            return t;
+        }
         return super.comparison(t, l);
     }
 
     @Override
     public Type logic(Locatable l) {
-        return this;
+        return IntType.getInstance();
+    }
+
+    @Override
+    public Type logic(Type t, Locatable l) {
+        if (t instanceof IntType || t instanceof CharType) {
+            return IntType.getInstance();
+        }
+        return super.logic(t, l);
+    }
+
+    @Override
+    public Type canBeCastedTo(Type t, Locatable l) {
+        if(t instanceof IntType || t instanceof CharType || t instanceof NumberType)
+            return t;
+        if(t instanceof ErrorType){
+            return t;
+        }
+        return super.canBeCastedTo(t,l);
     }
 
     @Override
     public int numberOfBytes() {
         return 1;
+    }
+
+    @Override
+    public char suffix() {
+        return 'b';
     }
 }

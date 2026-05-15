@@ -744,6 +744,7 @@ public class TSmmParser extends Parser {
 	public static class StatementContext extends ParserRuleContext {
 		public List<Statement> ast = new ArrayList<>();
 		public List<Statement> elseStmts = new ArrayList<>();
+		public Token log;
 		public ArgumentsContext arguments;
 		public ExpressionContext e1;
 		public ExpressionContext e2;
@@ -787,7 +788,7 @@ public class TSmmParser extends Parser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(143);
-				match(T__10);
+				((StatementContext)_localctx).log = match(T__10);
 				setState(144);
 				((StatementContext)_localctx).arguments = arguments();
 				setState(145);
@@ -795,8 +796,8 @@ public class TSmmParser extends Parser {
 
 				            for(Expression e : ((StatementContext)_localctx).arguments.ast){
 				                _localctx.ast.add( new LogStatement(
-				                        e.getLine(),
-				                        e.getColumn(),
+				                        ((StatementContext)_localctx).log.getLine(),
+				                        ((StatementContext)_localctx).log.getCharPositionInLine()+1,
 				                        e));
 				            }
 				          
@@ -1432,7 +1433,7 @@ public class TSmmParser extends Parser {
 		public Token n;
 		public TypeContext t;
 		public Token ID;
-		public VariablesContext vars;
+		public VariablesContext variables;
 		public Simple_typeContext simple_type() {
 			return getRuleContext(Simple_typeContext.class,0);
 		}
@@ -1505,7 +1506,7 @@ public class TSmmParser extends Parser {
 					setState(293);
 					((TypeContext)_localctx).ID = match(ID);
 					setState(294);
-					((TypeContext)_localctx).vars = variables();
+					((TypeContext)_localctx).variables = variables();
 					setState(295);
 					match(T__1);
 					setState(296);
@@ -1520,7 +1521,8 @@ public class TSmmParser extends Parser {
 					                      duplicated = true;
 					                      new ErrorType(
 					                          (((TypeContext)_localctx).ID!=null?((TypeContext)_localctx).ID.getText():null) + " is already defined in this scope",
-					                          rf);
+					                          rf
+					                      );
 					                      break;
 					                  }
 					              }
@@ -1529,11 +1531,37 @@ public class TSmmParser extends Parser {
 					                  _localctx.recordsList.add(
 					                      new RecordField(
 					                          ((TypeContext)_localctx).ID.getLine(),
-					                          ((TypeContext)_localctx).ID.getCharPositionInLine()+1,
+					                          ((TypeContext)_localctx).ID.getCharPositionInLine() + 1,
 					                          ((TypeContext)_localctx).ID.getText(),
 					                          ((TypeContext)_localctx).t.ast
 					                      )
 					                  );
+					              }
+
+					              for (Token id : ((TypeContext)_localctx).variables.ast) {
+					                  duplicated = false;
+
+					                  for (RecordField rf : _localctx.recordsList) {
+					                      if (rf.getName().equals(id.getText())) {
+					                          duplicated = true;
+					                          new ErrorType(
+					                              id.getText() + " is already defined in this scope",
+					                              rf
+					                          );
+					                          break;
+					                      }
+					                  }
+
+					                  if (!duplicated) {
+					                      _localctx.recordsList.add(
+					                          new RecordField(
+					                              id.getLine(),
+					                              id.getCharPositionInLine() + 1,
+					                              id.getText(),
+					                              ((TypeContext)_localctx).t.ast
+					                          )
+					                      );
+					                  }
 					              }
 					          
 					}

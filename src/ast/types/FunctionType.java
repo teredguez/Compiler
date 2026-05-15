@@ -12,6 +12,8 @@ public class FunctionType extends AbstractType {
     private Type returnType;
     private List<VarDefinition> param;
 
+    private int paramBytesSum, returnBytesSum;
+
     public FunctionType(Type returnType, List<VarDefinition> param) {
         this.returnType = returnType;
         this.param = param;
@@ -58,5 +60,18 @@ public class FunctionType extends AbstractType {
     @Override
     public int numberOfBytes() {
         throw new UnsupportedOperationException("Number of Bytes should not be calculated for Function Type");
+    }
+
+    public int getParamBytesSum() {
+        return param.stream()
+                .mapToInt(v -> v.getType().numberOfBytes())
+                .sum();
+    }
+
+    public int getReturnBytesSum() {
+        if (returnType instanceof VoidType)
+            return 0;
+
+        return returnType.numberOfBytes();
     }
 }

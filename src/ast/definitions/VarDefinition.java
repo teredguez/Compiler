@@ -12,11 +12,6 @@ public class VarDefinition extends AbstractDefinition implements Statement {
         super(line, column, type, name);
     }
 
-    //For symbolTable test
-    public VarDefinition(int line, int column,  String name,Type type) {
-        super(line, column, type, name);
-    }
-
     public int getOffset() {
         return offset;
     }
