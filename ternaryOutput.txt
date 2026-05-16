@@ -1,0 +1,28 @@
+
+#source	"ternaryInput.txt"
+
+	' * real r (offset 0)
+
+' Invocation to the main function
+call main
+halt
+
+
+#line	3
+ main:
+	' * Parameters
+	' * Local variables
+	enter	0
+
+#line	4
+	' * Assignment
+	pusha	0
+	pushi	0
+	jz	label0
+	pushf	1.1
+	jmp	label1
+ label0:
+	pushf	0.1
+ label1:
+	storef
+	ret	0, 0, 0
