@@ -1,0 +1,11 @@
+function main(): void {
+    let a = 3;
+    let b = 1.5;
+    let c = 'x';
+    let ana, rafa : int;
+
+    log a;
+    log b;
+    log c;
+}
+

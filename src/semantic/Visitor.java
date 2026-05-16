@@ -49,4 +49,5 @@ public interface Visitor<RT,PT> {
     RT visit(RecordField a, PT param);
 
 
+    RT visit(LetStatement l, PT param);
 }

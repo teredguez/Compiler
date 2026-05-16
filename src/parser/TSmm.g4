@@ -31,7 +31,13 @@ varDefinition returns [List<VarDefinition> ast = new ArrayList<VarDefinition>()]
                            id.getCharPositionInLine()+1,
                            $type.ast,
                            id.getText() ));}}
-         ;
+| 'let' ID '=' expression ';'{
+    $ast.add( new LetStatement($ID.getLine(),$ID.getCharPositionInLine()+1,
+                                null, $ID.text,
+                                new Variable($ID.getLine(), $ID.getCharPositionInLine()+1, $ID.text),
+                                $expression.ast));
+}
+;
 
 variables returns[List<Token> ast = new ArrayList<>()] : (',' ID { $ast.add($ID); })*
         ;

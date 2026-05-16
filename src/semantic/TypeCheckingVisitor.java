@@ -156,4 +156,12 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
         f.getType().mustBeBuiltIn(f);
         return null;
     }
+
+    @Override
+    public Void visit(LetStatement l, Type param) {
+        super.visit(l,param);
+        l.getVar().setType(l.getExpression().getType().assignable(l));
+        l.setType(l.getVar().getType());
+        return null;
+    }
 }

@@ -82,4 +82,9 @@ public class AbstractType implements Type {
     public char suffix(){
         return 0;
     }
+
+    @Override
+    public Type assignable(Locatable l) {
+        return null;
+    }
 }

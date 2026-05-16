@@ -98,4 +98,9 @@ public class IntType extends AbstractType {
     public char suffix() {
         return 'i';
     }
+
+    @Override
+    public Type assignable(Locatable l) {
+        return this;
+    }
 }

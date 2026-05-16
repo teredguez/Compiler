@@ -152,7 +152,11 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
      */
     @Override
     public Void visit(VarDefinition v, FuncDefinition param) {
-        cg.printComment(v.getType().toString() + " " + v.getName() + " (offset " + v.getOffset() + ")");
+        if(v instanceof LetStatement){
+            cg.printComment(v.getType().toString() + " " + v.getName() + " (offset " + v.getOffset() + ")");
+        }else{
+            cg.printComment(v.getType().toString() + " " + v.getName() + " (offset " + v.getOffset() + ")");
+        }
         return null;
     }
 
@@ -280,4 +284,11 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
         return null;
     }
 
+    @Override
+    public Void visit(LetStatement ls, FuncDefinition param) {
+        ls.getVar().accept(address, null);
+        ls.getExpression().accept(value, null);
+        cg.store(ls.getVar().getType());
+        return null;
+    }
 }

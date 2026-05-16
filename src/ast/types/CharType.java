@@ -99,4 +99,9 @@ public class CharType extends AbstractType {
     public char suffix() {
         return 'b';
     }
+
+    @Override
+    public Type assignable(Locatable l) {
+        return this;
+    }
 }

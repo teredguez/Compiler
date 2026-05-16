@@ -79,4 +79,9 @@ public class NumberType extends AbstractType {
     public char suffix() {
         return 'f';
     }
+
+    @Override
+    public Type assignable(Locatable l) {
+        return this;
+    }
 }

@@ -212,6 +212,12 @@ public class AbstractVisitor<RT, PT> implements Visitor<RT, PT> {
     }
 
     @Override
+    public RT visit(LetStatement l, PT param) {
+        l.getExpression().accept(this,null);
+        return null;
+    }
+
+    @Override
     public RT visit(Program p, PT param) {
         for(var definition : p.getDefinitions()) {
             definition.accept(this, param);

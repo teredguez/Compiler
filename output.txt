@@ -1,0 +1,56 @@
+
+#source	"LetStatement.txt"
+
+
+' Invocation to the main function
+call main
+halt
+
+
+#line	1
+ main:
+	' * Parameters
+	' * Local variables
+	push	bp
+	pushi	-2
+	addi
+	pushi	3
+	storei
+	push	bp
+	pushi	-6
+	addi
+	pushf	1.5
+	storef
+	push	bp
+	pushi	-7
+	addi
+	pushb	120
+	storeb
+	' * int ana (offset -9)
+	' * int rafa (offset -11)
+	enter	11
+
+#line	7
+	' * Write
+	push	bp
+	pushi	-2
+	addi
+	loadi
+	outi
+
+#line	8
+	' * Write
+	push	bp
+	pushi	-6
+	addi
+	loadf
+	outf
+
+#line	9
+	' * Write
+	push	bp
+	pushi	-7
+	addi
+	loadb
+	outb
+	ret	0, 11, 0

@@ -3,6 +3,7 @@ package codeGeneration;
 import ast.definitions.FuncDefinition;
 import ast.definitions.VarDefinition;
 import ast.locatables.Definition;
+import ast.statements.LetStatement;
 import ast.types.FunctionType;
 import ast.types.RecordField;
 import ast.types.RecordType;
@@ -57,6 +58,19 @@ public class OffsetVisitor extends AbstractVisitor<Void,Void> {
     public Void visit(FuncDefinition fd, Void param) {
         this.localBytesSum = 0;
         super.visit(fd, param);
+        return null;
+    }
+
+    @Override
+    public Void visit(LetStatement l, Void param) {
+        super.visit(l, param);
+        if(l.getScope() == 0){
+            l.setOffset(globalBytesSum);
+            globalBytesSum+=l.getType().numberOfBytes();
+        }else{
+            localBytesSum += l.getType().numberOfBytes();
+            l.setOffset(-localBytesSum);
+        }
         return null;
     }
 }
