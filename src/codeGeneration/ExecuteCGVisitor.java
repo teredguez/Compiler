@@ -280,4 +280,30 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
         return null;
     }
 
+    /*
+   execute[[ CompoundLogicalStatement: statement -> e1 OP e2 ]]() =
+
+        address[[ e1 ]]
+        <dup> address.type
+
+        <load> e1.type
+        value[[ e2 ]]
+
+        <and | or>
+
+        <store> e1.type
+     */
+    @Override
+    public Void visit(CompoundLogicalStatement c, FuncDefinition param) {
+        c.getExpression1().accept(address, null);     // deja address(left)
+        cg.dup(c.getExpression1().getType());                                     // duplicas la dirección
+
+        cg.load(c.getExpression1().getType());        // usas una copia para leer value(left)
+        c.getExpression2().accept(value, null);       // value(right)
+
+        cg.logic(c.getOperator().replace("=", ""));   // && u ||
+        cg.store(c.getExpression1().getType());       // guarda en la dirección original
+
+        return null;
+    }
 }

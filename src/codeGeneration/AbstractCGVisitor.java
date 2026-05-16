@@ -194,4 +194,10 @@ public class AbstractCGVisitor<TR,TP> implements Visitor<TR, TP>  {
     public TR visit(RecordField a, TP param) {
         throw new UnsupportedOperationException("");
     }
+
+    @Override
+    public TR visit(CompoundLogicalStatement c, TP param) {
+        throw new UnsupportedOperationException("");
+    }
+
 }

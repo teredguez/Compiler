@@ -2,6 +2,7 @@ package semantic;
 
 import ast.expressions.*;
 import ast.statements.Assignment;
+import ast.statements.CompoundLogicalStatement;
 import ast.statements.FunctionInvocation;
 import ast.statements.InputStatement;
 import ast.types.ErrorType;
@@ -104,4 +105,12 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(CompoundLogicalStatement c, Void param) {
+        super.visit(c, param);
+        if(!c.getExpression1().getLvalue()){
+            new ErrorType("Invalid value for Compound Logical statement", c.getExpression1() );
+        }
+        return null;
+    }
 }

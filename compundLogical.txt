@@ -1,0 +1,7 @@
+let r: int;
+
+function main(): void{
+    r = 1;
+	r &&= 2;
+	log r;
+}
