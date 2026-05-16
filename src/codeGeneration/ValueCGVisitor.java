@@ -129,9 +129,25 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void>{
      */
     @Override
     public Void visit(LogicOperation l, Void param) {
-        l.getExpression1().accept(this, param);
-        l.getExpression2().accept(this, param);
-        cg.logic(l.getOperator());
+        if(l.getOperator().equals("^")){
+            String leftFalse = cg.nextLabel();
+            String end = cg.nextLabel();
+            l.getExpression1().accept(this, param);
+            cg.jz(leftFalse);
+
+            l.getExpression2().accept(this, param);
+            cg.not();
+            cg.jmp(end);
+
+            cg.label(leftFalse);
+            l.getExpression2().accept(this, param);
+
+            cg.label(end);
+        }else{
+            l.getExpression1().accept(this, param);
+            l.getExpression2().accept(this, param);
+            cg.logic(l.getOperator());
+        }
         return null;
     }
 

@@ -1,0 +1,35 @@
+
+#source	"XOR.input.txt"
+
+	' * int r (offset 0)
+
+' Invocation to the main function
+call main
+halt
+
+
+#line	3
+ main:
+	' * Parameters
+	' * Local variables
+	enter	0
+
+#line	4
+	' * Assignment
+	pusha	0
+	pushi	5
+	jz	label0
+	pushi	0
+	not
+	jmp	label1
+ label0:
+	pushi	0
+ label1:
+	storei
+
+#line	5
+	' * Write
+	pusha	0
+	loadi
+	outi
+	ret	0, 0, 0

@@ -1,0 +1,6 @@
+let r: int;
+
+function main(): void{
+	r = 5 ^ 0;
+	log r;
+}

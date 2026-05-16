@@ -218,7 +218,7 @@ expression returns [Expression ast]:
                             $e2.ast,
                             $OP.text
                         );}
-        | e1=expression OP=('&&' | '||') e2=expression {
+        | e1=expression OP=('&&' | '||' | '^') e2=expression {
                         $ast = new LogicOperation(
                             $e1.ast.getLine(),
                             $e1.ast.getColumn(),
