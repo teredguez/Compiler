@@ -20,6 +20,9 @@ public interface Type extends ASTNode{
     public int numberOfBytes();
 
     public char suffix();
+
+    //ternary
+    public Type ternary(Type t, Type t2,Locatable l);
 }
 
 

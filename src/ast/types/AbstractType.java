@@ -82,4 +82,9 @@ public class AbstractType implements Type {
     public char suffix(){
         return 0;
     }
+
+    @Override
+    public Type ternary(Type t1, Type t2, Locatable l) {
+        return new ErrorType("Invalid ternary operands",l);
+    }
 }

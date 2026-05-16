@@ -226,6 +226,15 @@ expression returns [Expression ast]:
                             $e2.ast,
                             $OP.text
                         );}
+        | <assoc=right> e1=expression '?' e2=expression ':' e3=expression{
+                        $ast = new TernaryOperation(
+                            $e1.ast.getLine(),
+                            $e1.ast.getColumn(),
+                            $e1.ast,
+                            $e2.ast,
+                            $e3.ast
+                        );
+        }
         | expressionFunctionInvocation  { $ast = $expressionFunctionInvocation.ast; }
         | ID {$ast = new Variable($ID.getLine(),$ID.getCharPositionInLine()+1,$ID.text);}
         | INT_CONSTANT {

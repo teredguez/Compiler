@@ -156,4 +156,14 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
         f.getType().mustBeBuiltIn(f);
         return null;
     }
+
+    @Override
+    public Void visit(TernaryOperation t, Type param) {
+        super.visit(t, param);
+        t.getCondition().getType().mustPromoteTo(IntType.getInstance(),t);
+        t.getIfTrue().getType().mustBeBuiltIn(t);
+        t.getIfFalse().getType().mustBeBuiltIn(t);
+        t.setType(t.getCondition().getType().ternary(t.getIfTrue().getType(),t.getIfFalse().getType(),t));
+        return null;
+    }
 }

@@ -104,4 +104,10 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(TernaryOperation t, Void param) {
+        super.visit(t,param);
+        t.setLvalue(false);
+        return null;
+    }
 }

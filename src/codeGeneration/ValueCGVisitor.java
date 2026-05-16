@@ -206,5 +206,19 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(TernaryOperation t, Void param) {
+        String ifFalse = cg.nextLabel();
+        String end = cg.nextLabel();
+        t.getCondition().accept(this,null);
+        cg.convertTo(t.getCondition().getType(), IntType.getInstance());
+        cg.jz(ifFalse);
+        t.getIfTrue().accept(this, null);
+        cg.jmp(end);
+        cg.label(ifFalse);
+        t.getIfFalse().accept(this,null);
+        cg.label(end);
+        return null;
+    }
 }
 

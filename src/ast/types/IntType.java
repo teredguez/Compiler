@@ -98,4 +98,12 @@ public class IntType extends AbstractType {
     public char suffix() {
         return 'i';
     }
+
+    @Override
+    public Type ternary(Type ifTrueType, Type ifFalseType,Locatable l) {
+        if (!ifTrueType.equals(ifFalseType))
+            new ErrorType("Must Be Equal Types",l);
+        return ifTrueType;
+
+    }
 }

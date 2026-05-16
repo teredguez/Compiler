@@ -219,4 +219,11 @@ public class AbstractVisitor<RT, PT> implements Visitor<RT, PT> {
         return null;
     }
 
+    @Override
+    public RT visit(TernaryOperation t, PT param) {
+        t.getCondition().accept(this,param);
+        t.getIfTrue().accept(this,param);
+        t.getIfFalse().accept(this,param);
+        return null;
+    }
 }

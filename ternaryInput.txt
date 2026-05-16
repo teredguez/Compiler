@@ -1,0 +1,5 @@
+let r: number;
+
+function main(): void{
+	r = 0 ? 1.1 : 0.1;
+}
