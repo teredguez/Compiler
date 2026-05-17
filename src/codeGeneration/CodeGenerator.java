@@ -71,6 +71,16 @@ public class CodeGenerator {
         out.flush();
     }
 
+    public void push(boolean boolConstant) {
+        if(boolConstant){
+            out.println("\tpushi\t" +  1 );
+            out.flush();
+        }else{
+            out.println("\tpushi\t" +  0 );
+            out.flush();
+        }
+    }
+
     public void comparison(String operator, Type type) {
         String operation = switch (operator) {
             case ">" -> "gt";

@@ -42,5 +42,9 @@ public class LexerHelper {
 			throw new IllegalArgumentException("Invalid character literal: " + str);
 		}
 	}
+
+    public static boolean lexemeToBoolean(String str){
+        return str.equals("true");
+    }
 	
 }

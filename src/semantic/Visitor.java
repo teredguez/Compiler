@@ -48,5 +48,7 @@ public interface Visitor<RT,PT> {
 
     RT visit(RecordField a, PT param);
 
+    RT visit(BooleanType t, PT param);
+    RT visit(BooleanLiteral l, PT param);
 
 }

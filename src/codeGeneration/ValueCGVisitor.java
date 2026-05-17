@@ -85,6 +85,12 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(BooleanLiteral l, Void param) {
+        cg.push(l.getValue());
+        return null;
+    }
+
     /*
      * value[[ ArithmeticOperation: expression1 -> expression2 expression3 ]]() =
      *   value[[ expression2 ]]()

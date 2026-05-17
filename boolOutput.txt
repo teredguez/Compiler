@@ -1,0 +1,79 @@
+
+#source	"bool.txt"
+
+	' * bool a (offset 0)
+
+' Invocation to the main function
+call main
+halt
+
+
+#line	3
+ tere:
+	' * Parameters
+	' * Local variables
+	enter	0
+
+#line	6
+ main:
+	' * Parameters
+	' * Local variables
+	' * int t (offset -2)
+	enter	2
+
+#line	8
+	' * Assignment
+	push	bp
+	pushi	-2
+	addi
+	pushi	2
+	storei
+
+#line	9
+	' * Assignment
+	pusha	0
+	pushi	1
+	storei
+
+#line	11
+	' * If
+	pusha	0
+	loadi
+	jz	label0
+	' * if body
+
+#line	12
+	' * Write
+	pushb	89
+	outb
+	jmp	label1
+ label0:
+	' * else body
+
+#line	14
+	' * Write
+	pushb	78
+	outb
+ label1:
+
+#line	17
+	' * Assignment
+	pusha	0
+	pushi	0
+	storei
+
+#line	19
+	' * While
+ label2:
+	pusha	0
+	loadi
+	jz	label3
+	' * While Body
+
+#line	20
+	' * Write
+	pushb	88
+	outb
+	jmp	label2
+ label3:
+	ret	0, 2, 0

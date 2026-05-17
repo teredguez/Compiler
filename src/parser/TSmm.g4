@@ -234,11 +234,14 @@ expression returns [Expression ast]:
                 $ast = new CharLiteral($CHAR_CONSTANT.getLine(),$CHAR_CONSTANT.getCharPositionInLine()+1,LexerHelper.lexemeToChar($CHAR_CONSTANT.text));}
         | REAL_CONSTANT {
                 $ast = new NumberLiteral($REAL_CONSTANT.getLine(),$REAL_CONSTANT.getCharPositionInLine()+1,LexerHelper.lexemeToReal($REAL_CONSTANT.text));}
+        | BOOLEAN_CONSTANT {
+                $ast = new BooleanLiteral($BOOLEAN_CONSTANT.getLine(),$BOOLEAN_CONSTANT.getCharPositionInLine()+1,LexerHelper.lexemeToBoolean($BOOLEAN_CONSTANT.text));}
         ;
 simple_type returns [Type ast]:
      'char' { $ast = CharType.getInstance(); }
     | 'int' { $ast = IntType.getInstance(); }
     | 'number' { $ast = NumberType.getInstance(); }
+    | 'boolean' { $ast = BooleanType.getInstance(); }
     ;
 
 type returns [Type ast]
@@ -339,6 +342,10 @@ CHAR_CONSTANT: '\'' . '\''
 REAL_CONSTANT: MANTISSA
                | MANTISSA EXPONENT INT_CONSTANT
                ;
+
+BOOLEAN_CONSTANT: 'true'
+                | 'false'
+                ;
 fragment
 MANTISSA: INT_CONSTANT
         | INT_CONSTANT '.' INT_CONSTANT*

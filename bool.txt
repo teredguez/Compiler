@@ -1,0 +1,22 @@
+let a: boolean;
+
+function tere():int{
+
+}
+function main(): void {
+    let t: int;
+    t = 2;
+    a = true;
+
+    if (a) {
+        log 'Y';
+    } else {
+        log 'N';
+    }
+
+    a = false;
+
+    while (a) {
+        log 'X';
+    }
+}
