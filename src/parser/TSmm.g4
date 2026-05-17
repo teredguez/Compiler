@@ -226,6 +226,16 @@ expression returns [Expression ast]:
                             $e2.ast,
                             $OP.text
                         );}
+        | '++' e1 = expression{
+            $ast = new PrefixIncrement($e1.ast.getLine(),
+                                       $e1.ast.getColumn(),
+                                       $e1.ast);
+        }
+        | e1 = expression '++'{
+            $ast = new PostfixIncrement($e1.ast.getLine(),
+                                       $e1.ast.getColumn(),
+                                       $e1.ast);
+        }
         | expressionFunctionInvocation  { $ast = $expressionFunctionInvocation.ast; }
         | ID {$ast = new Variable($ID.getLine(),$ID.getCharPositionInLine()+1,$ID.text);}
         | INT_CONSTANT {

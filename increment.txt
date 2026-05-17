@@ -1,0 +1,11 @@
+let i: int;
+let a: int;
+
+function main(): void {
+    i = 1;
+
+    a = ++i;
+
+    log a;
+}
+

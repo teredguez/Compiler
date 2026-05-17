@@ -212,6 +212,18 @@ public class AbstractVisitor<RT, PT> implements Visitor<RT, PT> {
     }
 
     @Override
+    public RT visit(PrefixIncrement p, PT param) {
+        p.getExpression().accept(this,null);
+        return null;
+    }
+
+    @Override
+    public RT visit(PostfixIncrement po, PT param) {
+        po.getExpression().accept(this,null);
+        return null;
+    }
+
+    @Override
     public RT visit(Program p, PT param) {
         for(var definition : p.getDefinitions()) {
             definition.accept(this, param);

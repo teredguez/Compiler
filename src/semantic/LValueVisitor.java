@@ -104,4 +104,23 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(PostfixIncrement po, Void param) {
+        super.visit(po, param);
+        po.setLvalue(false);
+        if(!po.getExpression().getLvalue()){
+            new ErrorType("Invalid value for postfix increment", po.getExpression() );
+        }
+        return null;
+    }
+
+    @Override
+    public Void visit(PrefixIncrement p, Void param) {
+        super.visit(p, param);
+        p.setLvalue(false);
+        if(!p.getExpression().getLvalue()){
+            new ErrorType("Invalid value for prefix increment", p.getExpression() );
+        }
+        return null;
+    }
 }

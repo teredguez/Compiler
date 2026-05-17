@@ -156,4 +156,20 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
         f.getType().mustBeBuiltIn(f);
         return null;
     }
+
+    @Override
+    public Void visit(PrefixIncrement p, Type param) {
+        super.visit(p, param);
+        p.getExpression().getType().mustPromoteTo(IntType.getInstance(),p);
+        p.setType(p.getExpression().getType());
+        return null;
+    }
+
+    @Override
+    public Void visit(PostfixIncrement po, Type param) {
+        super.visit(po, param);
+        po.getExpression().getType().mustPromoteTo(IntType.getInstance(),po);
+        po.setType(po.getExpression().getType());
+        return null;
+    }
 }

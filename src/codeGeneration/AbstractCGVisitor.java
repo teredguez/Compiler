@@ -194,4 +194,14 @@ public class AbstractCGVisitor<TR,TP> implements Visitor<TR, TP>  {
     public TR visit(RecordField a, TP param) {
         throw new UnsupportedOperationException("");
     }
+
+    @Override
+    public TR visit(PrefixIncrement p, TP param) {
+        throw new UnsupportedOperationException("");
+    }
+
+    @Override
+    public TR visit(PostfixIncrement po, TP param) {
+        throw new UnsupportedOperationException("");
+    }
 }

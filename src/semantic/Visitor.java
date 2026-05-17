@@ -49,4 +49,6 @@ public interface Visitor<RT,PT> {
     RT visit(RecordField a, PT param);
 
 
+    RT visit(PrefixIncrement p, PT param);
+    RT visit(PostfixIncrement po, PT param);
 }

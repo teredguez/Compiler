@@ -206,5 +206,54 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void>{
         return null;
     }
 
+    /*
+     * value[[PrefixIncrement: exp1 -> exp2]]=
+     *      address[exp2]
+     *      value[[exp2]]
+     *
+     *      <pushi> 1
+     *      <addi>
+     *      <store> exp2.type.suffix()
+     *
+     *      value[[exp2]] // devuelve el valor DESPUES de incrementar
+     */
+    @Override
+    public Void visit(PrefixIncrement p, Void param) {
+        p.getExpression().accept(address, null);     // dirección donde guardar
+        p.getExpression().accept(this, null);       // old value
+        cg.convertTo(p.getExpression().getType(), IntType.getInstance());
+        cg.push(1);
+        cg.add(IntType.getInstance());
+        cg.convertTo(IntType.getInstance(), p.getExpression().getType());
+        cg.store(p.getExpression().getType());       // actualiza i
+        p.getExpression().accept(this, null); //devuelve valor nuevo
+        return null;
+    }
+
+    /*
+     * value[[PostfixIncrement: exp1 -> exp2]]=
+     *      value[[exp2]] // devuelve el valor ANTES de incrementar
+     *
+     *      address[exp2]
+     *      value[[exp2]]
+     *
+     *      <pushi> 1
+     *      <addi>
+     *      <store> exp2.type.suffix()
+     */
+    @Override
+    public Void visit(PostfixIncrement po, Void param) {
+        po.getExpression().accept(this, null);       // deja old value para el contexto externo
+
+        po.getExpression().accept(address, null);     // dirección donde guardar
+        po.getExpression().accept(this, null);       // old value otra vez
+        cg.convertTo(po.getExpression().getType(), IntType.getInstance());
+        cg.push(1);
+        cg.add(IntType.getInstance());
+        cg.convertTo(IntType.getInstance(), po.getExpression().getType());
+        cg.store(po.getExpression().getType());       // actualiza i
+
+        return null;
+    }
 }
 

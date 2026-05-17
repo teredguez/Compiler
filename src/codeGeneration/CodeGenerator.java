@@ -132,6 +132,10 @@ public class CodeGenerator {
         out.flush();
     }
 
+    public void dup(Type type){
+        out.println("\tdup" + type.suffix());
+        out.flush();
+    }
     public void convertTo(Type t1, Type t2) {
         char from = t1.suffix();
         char to = t2.suffix();
