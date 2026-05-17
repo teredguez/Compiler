@@ -9,6 +9,8 @@ import ast.types.*;
 
 public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
 
+    private int loopDepth = 0;
+
     @Override
     public Void visit(IntLiteral i, Type param){
         super.visit(i, param);
@@ -46,7 +48,9 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
 
     @Override
     public Void visit(WhileStatement w, Type param) {
+        loopDepth++;
         super.visit(w, param);
+        loopDepth--;
         w.getWhileExpression().getType().mustBeLogical(w);
         return null;
     }
@@ -154,6 +158,14 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
         FunctionType fType = (FunctionType) f.getType();
         super.visit(f, fType.getReturnType());
         f.getType().mustBeBuiltIn(f);
+        return null;
+    }
+
+    @Override
+    public Void visit(BrakeStatement b, Type param) {
+        if(loopDepth == 0){
+            new ErrorType("Cannot create a break statement out of a while loop",b);
+        }
         return null;
     }
 }

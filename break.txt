@@ -1,0 +1,16 @@
+let i: int;
+
+function main(): void {
+    i = 0;
+    while (i < 10) {
+        log i, '\n';
+
+        if (i == 3) {
+            break;
+        }
+
+        i = i + 1;
+    }
+
+    log 'E';
+}

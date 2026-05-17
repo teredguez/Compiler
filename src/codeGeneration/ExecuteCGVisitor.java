@@ -10,11 +10,14 @@ import ast.types.FunctionType;
 import ast.types.IntType;
 import ast.types.VoidType;
 
+import java.util.Stack;
+
 public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
 
     public CodeGenerator cg;
     public ValueCGVisitor value;
     public AddressCGVisitor address;
+    private Stack<String> breakLabels = new Stack<>();
 
     public ExecuteCGVisitor(CodeGenerator cg) {
         this.cg = cg;
@@ -214,6 +217,8 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
         String cond = cg.nextLabel();
         String end = cg.nextLabel();
 
+        breakLabels.push(end);
+
         cg.label(cond);
         w.getWhileExpression().accept(value, null);
         cg.convertTo(w.getWhileExpression().getType(), IntType.getInstance());
@@ -225,6 +230,7 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
         }
         cg.jmp(cond);
         cg.label(end);
+        breakLabels.pop();
         return null;
     }
     /*
@@ -280,4 +286,12 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
         return null;
     }
 
+    @Override
+    public Void visit(BrakeStatement b, FuncDefinition param) {
+        cg.printLine(b.getLine());
+        cg.printComment("Break");
+
+        cg.jmp(breakLabels.peek());
+        return null;
+    }
 }

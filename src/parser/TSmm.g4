@@ -152,6 +152,7 @@ statement returns [List<Statement> ast = new ArrayList<>()] locals [List<Stateme
          }
          | statementFunctionInvocation ';'{$ast.add($statementFunctionInvocation.ast);
          }
+         | b='break' ';' { $ast.add( new BrakeStatement($b.getLine(), $b.getCharPositionInLine() + 1));}
         ;
 
 block returns[List<Statement>ast = new ArrayList<>()]:
