@@ -79,4 +79,12 @@ public class NumberType extends AbstractType {
     public char suffix() {
         return 'f';
     }
+
+    @Override
+    public Type power(Type t, Locatable l) {
+        if(t instanceof CharType || t instanceof IntType || t instanceof ErrorType){
+            return this;
+        }
+        return super.power(t, l);
+    }
 }

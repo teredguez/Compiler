@@ -206,5 +206,37 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void>{
         return null;
     }
 
+    /*
+    * no se puede, necesitariamos temporales para guardar los valores durante el bucle
+    value[[ PowerOperation: expression1 -> expression2 ** expression3 ]]() =
+
+        result = 1.0
+        base = value[[ expression2 ]]
+        exponent = value[[ expression3 ]]
+
+        label_cond:
+            exponent
+            pushi 0
+            gti
+            jz label_end
+
+            result = result * base
+            exponent = exponent - 1
+
+            jmp label_cond
+
+        label_end:
+            push result
+     */
+    @Override
+    public Void visit(PowerOperation p, Void param) {
+        p.getExpression1().accept(this, null);
+        cg.convertTo(p.getExpression2().getType(), IntType.getInstance());
+        //for(int i=0;i< numero que sea exp2; i++){
+          //  p.getExpression1().accept(this, null);
+           // cg.mul(p.getExpression1().getType());
+        //} no se puede hacer esto
+        return null;
+    }
 }
 

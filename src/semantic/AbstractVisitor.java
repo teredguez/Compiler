@@ -212,11 +212,19 @@ public class AbstractVisitor<RT, PT> implements Visitor<RT, PT> {
     }
 
     @Override
+    public RT visit(PowerOperation p, PT param) {
+        p.getExpression1().accept(this, param);
+        p.getExpression2().accept(this,param);
+        return null;
+    }
+
+    @Override
     public RT visit(Program p, PT param) {
         for(var definition : p.getDefinitions()) {
             definition.accept(this, param);
         }
         return null;
     }
+
 
 }

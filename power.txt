@@ -1,0 +1,12 @@
+let r: number;
+let i: int;
+
+function main(): void {
+    i = 3;
+
+    r = 2.0 ** i;
+    log r, '\n';
+
+    r = 2.0 ** (3 ** 2);
+    log r, '\n';
+}

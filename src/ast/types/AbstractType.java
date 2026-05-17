@@ -82,4 +82,9 @@ public class AbstractType implements Type {
     public char suffix(){
         return 0;
     }
+
+    @Override
+    public Type power(Type t, Locatable l) {
+        return new ErrorType("can not apply power operation to type " + t.toString() , l);
+    }
 }

@@ -98,4 +98,12 @@ public class IntType extends AbstractType {
     public char suffix() {
         return 'i';
     }
+
+    @Override
+    public Type power(Type t, Locatable l) {
+        if(t instanceof IntType || t instanceof CharType || t instanceof ErrorType){
+            return this;
+        }
+        return super.power(t, l);
+    }
 }

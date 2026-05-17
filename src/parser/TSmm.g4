@@ -194,6 +194,14 @@ expression returns [Expression ast]:
                             $expression.ast.getColumn(),
                             $expression.ast
                         );}
+        | <assoc=right> e1=expression OP='**' e2=expression {
+                                  $ast = new PowerOperation(
+                                      $e1.ast.getLine(),
+                                      $e1.ast.getColumn(),
+                                      $e1.ast,
+                                      $e2.ast,
+                                      $OP.text
+                                  );}
         | e1=expression OP=('*' | '%' | '/') e2=expression {
                         $ast = new ArithmeticOperation(
                             $e1.ast.getLine(),

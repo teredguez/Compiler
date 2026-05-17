@@ -20,6 +20,8 @@ public interface Type extends ASTNode{
     public int numberOfBytes();
 
     public char suffix();
+
+    public Type power(Type t, Locatable l);
 }
 
 

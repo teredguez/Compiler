@@ -96,4 +96,8 @@ public class ErrorType extends AbstractType {
         throw new UnsupportedOperationException("Number of Bytes should not be calculated for Error Type");
     }
 
+    @Override
+    public Type power(Type t, Locatable l) {
+        return this;
+    }
 }
