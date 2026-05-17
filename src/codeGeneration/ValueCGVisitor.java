@@ -190,7 +190,7 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void>{
      */
     @Override
     public Void visit(FunctionInvocation f, Void param) {
-        FunctionType functionType = (FunctionType) f.getType();
+        FunctionType functionType = (FunctionType) f.getVariable().getType();
 
         for (int i = 0; i < f.getExpressionList().size(); i++) {
             Expression argument = f.getExpressionList().get(i);
