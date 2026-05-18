@@ -156,4 +156,13 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
         f.getType().mustBeBuiltIn(f);
         return null;
     }
+
+    @Override
+    public Void visit(SwapStatement s, Type param) {
+        super.visit(s, param);
+        if(!s.getLeftExpression().getType().equals(s.getRightExpression().getType())){
+            new ErrorType("Both expressions on a swap statement must be the same type", s);
+        }
+        return null;
+    }
 }

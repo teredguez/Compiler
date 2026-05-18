@@ -4,6 +4,7 @@ import ast.expressions.*;
 import ast.statements.Assignment;
 import ast.statements.FunctionInvocation;
 import ast.statements.InputStatement;
+import ast.statements.SwapStatement;
 import ast.types.ErrorType;
 
 public class LValueVisitor extends AbstractVisitor<Void,Void>{
@@ -104,4 +105,12 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(SwapStatement s, Void param) {
+        super.visit(s, param);
+        if(!s.getRightExpression().getLvalue() || !s.getLeftExpression().getLvalue()){
+            new ErrorType("Both expressions on a swap statement must be lvalue", s);
+        }
+        return null;
+    }
 }

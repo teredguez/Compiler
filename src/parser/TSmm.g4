@@ -150,6 +150,13 @@ statement returns [List<Statement> ast = new ArrayList<>()] locals [List<Stateme
                     $expression.ast.getLine(),
                     $expression.ast));
          }
+         | e1=expression '<=>' e2=expression ';'{
+            $ast.add( new SwapStatement(
+                $e1.ast.getLine(),
+                $e1.ast.getColumn(),
+                $e1.ast,
+                $e2.ast));
+         }
          | statementFunctionInvocation ';'{$ast.add($statementFunctionInvocation.ast);
          }
         ;

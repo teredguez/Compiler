@@ -219,4 +219,10 @@ public class AbstractVisitor<RT, PT> implements Visitor<RT, PT> {
         return null;
     }
 
+    @Override
+    public RT visit(SwapStatement s, PT param) {
+        s.getLeftExpression().accept(this, param);
+        s.getRightExpression().accept(this, param);
+        return null;
+    }
 }

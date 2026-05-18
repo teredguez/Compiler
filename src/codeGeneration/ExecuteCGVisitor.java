@@ -280,4 +280,18 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
         return null;
     }
 
+    @Override
+    public Void visit(SwapStatement s, FuncDefinition param) {
+        s.getRightExpression().accept(address,null);
+
+        s.getLeftExpression().accept(value, null);
+        s.getLeftExpression().accept(address, null);
+
+        s.getRightExpression().accept(value,null);
+        cg.store(s.getLeftExpression().getType());
+
+        cg.store(s.getRightExpression().getType());
+
+        return null;
+    }
 }

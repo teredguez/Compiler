@@ -1,0 +1,12 @@
+let a: int;
+let b: int;
+
+function main(): void {
+    a = 1;
+    b = 2;
+
+    a <=> b;
+
+    log a;
+    log b;
+}
