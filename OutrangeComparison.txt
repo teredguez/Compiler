@@ -1,0 +1,78 @@
+
+#source	"rangeComparison.txt"
+
+	' * real a (offset 0)
+	' * int b (offset 4)
+
+' Invocation to the main function
+call main
+halt
+
+
+#line	4
+ main:
+	' * Parameters
+	' * Local variables
+	enter	0
+
+#line	5
+	' * Assignment
+	pusha	0
+	pushi	1
+	i2f
+	storef
+
+#line	6
+	' * Assignment
+	pusha	4
+	pushi	10
+	storei
+
+#line	8
+	' * If
+	pusha	0
+	loadf
+	f2i
+	pushi	5
+	lti
+	pushi	5
+	pusha	4
+	loadi
+	lti
+	and
+	jz	label0
+	' * if body
+
+#line	9
+	' * Write
+	pushb	89
+	outb
+	jmp	label1
+ label0:
+	' * else body
+ label1:
+
+#line	12
+	' * If
+	pusha	0
+	loadf
+	f2i
+	pushi	5
+	gti
+	pushi	5
+	pusha	4
+	loadi
+	gti
+	and
+	jz	label2
+	' * if body
+
+#line	13
+	' * Write
+	pushb	78
+	outb
+	jmp	label3
+ label2:
+	' * else body
+ label3:
+	ret	0, 0, 0

@@ -85,6 +85,16 @@ public class CodeGenerator {
         out.flush();
     }
 
+    public void rangeComparison(String operator, Type type){
+        String operation = switch (operator) {
+            case ">>" -> "gt";
+            case "<<" -> "lt";
+            default -> "";
+        };
+        out.println("\t" + operation + type.suffix());
+        out.flush();
+    }
+
     public void logic(String operator) {
         String operation = switch (operator) {
             case "&&" -> "and";

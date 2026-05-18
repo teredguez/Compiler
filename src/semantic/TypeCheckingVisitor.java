@@ -156,4 +156,16 @@ public class TypeCheckingVisitor extends AbstractVisitor<Void,Type>{
         f.getType().mustBeBuiltIn(f);
         return null;
     }
+
+    @Override
+    public Void visit(RangeComparison rc, Type param) {
+        super.visit(rc, param);
+        if(!rc.getOperator1().equals(rc.getOperator2())){
+            new ErrorType("Operands must be the same", rc);
+        }
+        Type t1 = rc.getLeftExpression().getType().comparison(rc.getMiddleExpression().getType(),rc);
+        Type t2 = rc.getMiddleExpression().getType().comparison(rc.getRightExpression().getType(),rc);
+        rc.setType(t1.logic(t2,rc));
+        return null;
+    }
 }

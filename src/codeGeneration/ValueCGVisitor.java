@@ -1,5 +1,6 @@
 package codeGeneration;
 
+import ast.Type;
 import ast.expressions.*;
 import ast.locatables.Expression;
 import ast.statements.FunctionInvocation;
@@ -206,5 +207,24 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(RangeComparison rc, Void param) {
+        Type t1 =rc.getLeftExpression().getType().comparison(rc.getMiddleExpression().getType(),rc);
+        rc.getLeftExpression().accept(this, null);
+        cg.convertTo(rc.getLeftExpression().getType(),t1);
+        rc.getMiddleExpression().accept(this, null);
+        cg.convertTo(rc.getMiddleExpression().getType(),t1);
+        cg.rangeComparison(rc.getOperator1(),t1);
+
+        Type t2 =rc.getMiddleExpression().getType().comparison(rc.getRightExpression().getType(),rc);
+        rc.getMiddleExpression().accept(this, null);
+        cg.convertTo(rc.getMiddleExpression().getType(),t2);
+        rc.getRightExpression().accept(this, null);
+        cg.convertTo(rc.getRightExpression().getType(),t2);
+        cg.rangeComparison(rc.getOperator1(), t2);
+
+        cg.logic("&&");
+        return null;
+    }
 }
 

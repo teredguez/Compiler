@@ -193,4 +193,9 @@ public class AbstractCGVisitor<TR,TP> implements Visitor<TR, TP>  {
     public TR visit(RecordField a, TP param) {
         throw new UnsupportedOperationException(getClass().getSimpleName() + " does not support visiting RecordField");
     }
+
+    @Override
+    public TR visit(RangeComparison rc, TP param) {
+        throw new UnsupportedOperationException(getClass().getSimpleName() + " does not support visiting RangeComparison");
+    }
 }

@@ -1,0 +1,16 @@
+let a: number;
+let b: int;
+
+function main(): void {
+    a = 1;
+    b = 10;
+
+    if (a << 5 << b) {
+        log 'Y';
+    }
+
+    if (a >> 5 >> b) {
+        log 'N';
+    }
+}
+

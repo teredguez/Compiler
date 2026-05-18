@@ -219,4 +219,11 @@ public class AbstractVisitor<RT, PT> implements Visitor<RT, PT> {
         return null;
     }
 
+    @Override
+    public RT visit(RangeComparison rc, PT param) {
+        rc.getLeftExpression().accept(this, null);
+        rc.getMiddleExpression().accept(this, null);
+        rc.getRightExpression().accept(this, null);
+        return null;
+    }
 }

@@ -104,4 +104,10 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(RangeComparison rc, Void param) {
+        rc.setLvalue(false);
+        super.visit(rc, param);
+        return null;
+    }
 }
