@@ -31,14 +31,16 @@ public class IdentificationVisitor extends AbstractVisitor<Void, Void>{
     }
 
     @Override
-    public Void visit(Variable v, Void param){
-       Definition def = symbolTable.find(v.getName());
-       if(def == null){
-           new ErrorType("Definition for variable " + v.getName() + " not found", v);
-       }else{
-           v.setDefinition(def);
-       }
-       return null;
+    public Void visit(Variable v, Void param) {
+        super.visit(v, param);
+        Definition def = symbolTable.find(v.getName());
+
+        if (def == null) {
+            ErrorType error = new ErrorType("Definition for name '" + v.getName() + "' not found",v);
+            def = new VarDefinition(v.getLine(),v.getColumn(),error,v.getName());
+        }
+        v.setDefinition(def);
+        return null;
     }
 
 }

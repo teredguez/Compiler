@@ -1,4 +1,4 @@
-// Generated from C:/Users/teres/IdeaProjects/DLP_UO294178/src/parser/TSmm.g4 by ANTLR 4.13.2
+// Generated from C:/Users/teres/IdeaProjects/DLPUO294178/src/parser/TSmm.g4 by ANTLR 4.13.2
 package parser;
 
 import ast.definitions.*;
@@ -137,6 +137,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_program; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterProgram(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitProgram(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitProgram(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ProgramContext program() throws RecognitionException {
@@ -196,6 +209,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_definition; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterDefinition(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitDefinition(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitDefinition(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final DefinitionContext definition() throws RecognitionException {
@@ -253,6 +279,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_varDefinition; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterVarDefinition(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitVarDefinition(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitVarDefinition(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VarDefinitionContext varDefinition() throws RecognitionException {
@@ -306,6 +345,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_variables; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterVariables(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitVariables(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitVariables(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VariablesContext variables() throws RecognitionException {
@@ -380,6 +432,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_funcDefinition; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterFuncDefinition(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitFuncDefinition(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitFuncDefinition(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final FuncDefinitionContext funcDefinition() throws RecognitionException {
@@ -508,6 +573,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_parameters; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterParameters(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitParameters(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitParameters(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ParametersContext parameters() throws RecognitionException {
@@ -583,6 +661,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_expressionFunctionInvocation; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterExpressionFunctionInvocation(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitExpressionFunctionInvocation(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitExpressionFunctionInvocation(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExpressionFunctionInvocationContext expressionFunctionInvocation() throws RecognitionException {
@@ -635,6 +726,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_statementFunctionInvocation; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterStatementFunctionInvocation(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitStatementFunctionInvocation(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitStatementFunctionInvocation(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StatementFunctionInvocationContext statementFunctionInvocation() throws RecognitionException {
@@ -690,6 +794,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_arguments; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterArguments(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitArguments(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitArguments(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ArgumentsContext arguments() throws RecognitionException {
@@ -775,6 +892,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_statement; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterStatement(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitStatement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StatementContext statement() throws RecognitionException {
@@ -954,6 +1084,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_block; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterBlock(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitBlock(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitBlock(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final BlockContext block() throws RecognitionException {
@@ -1056,6 +1199,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_expression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExpressionContext expression() throws RecognitionException {
@@ -1377,6 +1533,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_simple_type; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterSimple_type(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitSimple_type(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitSimple_type(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Simple_typeContext simple_type() throws RecognitionException {
@@ -1458,6 +1627,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_type; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterType(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitType(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitType(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TypeContext type() throws RecognitionException {
@@ -1614,6 +1796,19 @@ public class TSmmParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mainDefinition; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).enterMainDefinition(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TSmmListener ) ((TSmmListener)listener).exitMainDefinition(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TSmmVisitor ) return ((TSmmVisitor<? extends T>)visitor).visitMainDefinition(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MainDefinitionContext mainDefinition() throws RecognitionException {

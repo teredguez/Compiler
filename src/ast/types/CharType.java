@@ -99,4 +99,11 @@ public class CharType extends AbstractType {
     public char suffix() {
         return 'b';
     }
+
+    @Override
+    public Type superType(Type t, Locatable l) {
+        if (t instanceof NumberType)
+            return t;
+        return IntType.getInstance();
+    }
 }

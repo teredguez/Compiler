@@ -1,0 +1,31 @@
+let i:int;
+let c:char;
+let n:number;
+
+function main(): void {
+    i = 65;
+    c = 'A';
+    n = 65.0;
+
+    log i == c, '\n';      // 1
+    log c == n, '\n';      // 1
+    log i == n, '\n';      // 1
+
+    log c < 'B', '\n';     // 1
+    log c <= i, '\n';      // 1
+    log n >= c, '\n';      // 1
+
+    log 'Z' > i, '\n';     // 1
+    log 64 < c, '\n';      // 1
+    log 66.0 > c, '\n';    // 1
+
+    log i != 'B', '\n';    // 1
+
+    log 'a' > 3.3, '\n';      // 1
+    log 3.3 < 'a', '\n';      // 1
+    log 'a' == 97.0, '\n';    // 1
+    log 'a' != 97.5, '\n';    // 1
+    log 65.5 > 'A', '\n';     // 1
+    log 'B' > 65.5, '\n';     // 1
+    log 64.5 < 'A', '\n';     // 1
+}

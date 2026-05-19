@@ -98,4 +98,11 @@ public class IntType extends AbstractType {
     public char suffix() {
         return 'i';
     }
+
+    @Override
+    public Type superType(Type t, Locatable l) {
+        if(t instanceof NumberType)
+            return t;
+        return this;
+    }
 }

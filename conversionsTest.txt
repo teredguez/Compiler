@@ -1,0 +1,102 @@
+let ints: [128]int;
+let chars: [5]char;
+let records: [3] [
+    let code:int;
+    let letter:char;
+];
+
+let i:int;
+let c:char;
+let n:number;
+
+function takesInt(x:int): int {
+    return x + 1;
+}
+
+function takesNumber(x:number): number {
+    return x + 0.5;
+}
+
+function main(): void {
+    i = 0;
+    c = 'A';
+    n = 2.5;
+
+    // char -> int in assignment
+    i = c;
+    log i, '\n';          // 65
+
+    // char -> int in arithmetic
+    i = 'A' + 1;
+    log i, '\n';          // 66
+
+    // char -> int in array indexing
+    ints['A'] = 100;
+    log ints[65], '\n';   // 100
+
+    ints['B' - 'A'] = 200;
+    log ints[1], '\n';    // 200
+
+    // int -> number
+    n = i;
+    log n, '\n';
+
+    n = 'A' + 2.5;
+    log n, '\n';          // 67.5
+
+    // char/int comparisons
+    log 'A' < 'B', '\n';  // 1
+    log 'A' < 70, '\n';   // 1
+    log 70 > 'A', '\n';   // 1
+
+    // char in function argument expecting int
+    i = takesInt('A');
+    log i, '\n';          // 66
+
+    // int/char in function argument expecting number
+    n = takesNumber('A');
+    log n, '\n';          // 65.5
+
+    // records with char/int conversions
+    records[0].letter = 'C';
+    records[0].code = records[0].letter;
+    log records[0].code, '\n'; // 67
+
+    records[1].code = 'D' + 1;
+    records[1].letter = (records[1].code as char);
+    log records[1].letter, '\n'; // E
+
+    // arrays of char
+    chars[0] = 'H';
+    chars[1] = 'i';
+    chars[2] = '!';
+    log chars[0], chars[1], chars[2], '\n';
+
+    // explicit casts
+    c = (65 as char);
+    log c, '\n';          // A
+
+    i = ('0' as int);
+    log i, '\n';          // 48
+
+    n = (i as number);
+    log n, '\n';
+
+    i = 0;
+    while (i < 3) {
+        ints[i] = '0' + i;
+        log ints[i], ' ';
+        i = i + 1;
+    }
+    log '\n';
+
+    // -------- UNCOMMENT TO TEST, THESE SHOULD BE SEMANTIC ERRORS --------
+
+    // ints[n] = 1;          // ERROR: number cannot be used as array index
+    // ints[1.5] = 1;        // ERROR: number cannot be used as array index
+    // c = n;                // ERROR: number cannot assign to char implicitly
+    // i = n;                // ERROR: number cannot assign to int implicitly
+    // chars[n] = 'X';       // ERROR: number cannot index array
+    // takesInt(n);          // ERROR: number cannot promote to int
+    // records[n].code = 1;  // ERROR: number cannot index array
+}

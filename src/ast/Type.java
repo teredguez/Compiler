@@ -20,6 +20,9 @@ public interface Type extends ASTNode{
     public int numberOfBytes();
 
     public char suffix();
+
+    public Type superType(Type type, Locatable l);
+
 }
 
 

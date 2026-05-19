@@ -69,6 +69,11 @@ public class AbstractType implements Type {
     }
 
     @Override
+    public Type superType(Type type, Locatable l) {
+        return new ErrorType("No super type found between " + this + " and " + type, l);
+    }
+
+    @Override
     public <RT, PT> RT accept(Visitor<RT, PT> v, PT param) {
         return null;
     }

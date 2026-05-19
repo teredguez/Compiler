@@ -1,5 +1,6 @@
 package codeGeneration;
 
+import ast.Type;
 import ast.expressions.*;
 import ast.locatables.Expression;
 import ast.statements.FunctionInvocation;
@@ -106,18 +107,22 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void>{
     /*
      * value [[ CompareOperation: expression1 -> expression2 expression3 ]]() =
      *   value[[ expression2 ]]()
-     *   cg.convertTo(expression2.type, expression1.type)
+     *   cg.convertTo(expression2.type, supertype(expression1.type, expression2.type))
      *   value[[ expression3 ]]()
-     *   cg.convertTo(expression3.type, expression1.type)
+     *   cg.convertTo(expression3.type, supertype(expression1.type, expression2.type))
      *   cg.comparison(expression1.operator, expression1.type)
      */
     @Override
     public Void visit(CompareOperation c, Void param) {
+        Type superType = c.getExpression1().getType().superType(c.getExpression2().getType(), c);
+
         c.getExpression1().accept(this, param);
-        cg.convertTo(c.getExpression1().getType(), c.getType());
+        cg.convertTo(c.getExpression1().getType(), superType);
+
         c.getExpression2().accept(this, param);
-        cg.convertTo(c.getExpression2().getType(), c.getType());
-        cg.comparison(c.getOperator(), c.getType());
+        cg.convertTo(c.getExpression2().getType(), superType);
+
+        cg.comparison(c.getOperator(), superType);
         return null;
     }
 
