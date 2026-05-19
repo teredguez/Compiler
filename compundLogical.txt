@@ -1,7 +1,7 @@
-let r: int;
+let r: char;
 
 function main(): void{
-    r = 1;
-	r &&= 'c';
+    r = 'y';
+	r &&= 2;
 	log r;
 }

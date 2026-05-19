@@ -298,7 +298,7 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
     public Void visit(CompoundLogicalStatement c, FuncDefinition param) {
         Type logicType = c.getExpression1().getType().logic(c.getExpression2().getType(),c);
         c.getExpression1().accept(address, null);     // deja address(left)
-        cg.dup(c.getExpression1().getType());                                     // duplicas la dirección
+        cg.dup(IntType.getInstance());                                     // duplicas la dirección
 
         cg.load(c.getExpression1().getType());        // usas una copia para leer value(left)
         cg.convertTo(c.getExpression1().getType(), logicType);
