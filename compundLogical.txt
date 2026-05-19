@@ -2,6 +2,6 @@ let r: int;
 
 function main(): void{
     r = 1;
-	r &&= 2;
+	r &&= 'c';
 	log r;
 }

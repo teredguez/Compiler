@@ -1,6 +1,7 @@
 package codeGeneration;
 
 import ast.Program;
+import ast.Type;
 import ast.definitions.FuncDefinition;
 import ast.definitions.VarDefinition;
 import ast.locatables.Definition;
@@ -295,13 +296,17 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
      */
     @Override
     public Void visit(CompoundLogicalStatement c, FuncDefinition param) {
+        Type logicType = c.getExpression1().getType().logic(c.getExpression2().getType(),c);
         c.getExpression1().accept(address, null);     // deja address(left)
         cg.dup(c.getExpression1().getType());                                     // duplicas la dirección
 
         cg.load(c.getExpression1().getType());        // usas una copia para leer value(left)
+        cg.convertTo(c.getExpression1().getType(), logicType);
         c.getExpression2().accept(value, null);       // value(right)
+        cg.convertTo(c.getExpression2().getType(),logicType);
 
         cg.logic(c.getOperator().replace("=", ""));   // && u ||
+        cg.convertTo(logicType,c.getExpression1().getType());
         cg.store(c.getExpression1().getType());       // guarda en la dirección original
 
         return null;
