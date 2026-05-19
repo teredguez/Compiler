@@ -1,0 +1,70 @@
+
+#source	"assignmentExp.txt"
+
+	' * int a (offset 0)
+	' * int b (offset 2)
+	' * int c (offset 4)
+	' * real r (offset 6)
+
+' Invocation to the main function
+call main
+halt
+
+
+#line	6
+ main:
+	' * Parameters
+	' * Local variables
+	enter	0
+
+#line	8
+	' * Assignment
+	pusha	0
+	pushi	3
+	pusha	2
+	pushi	3
+	storei
+	pushi	2
+	addi
+	storei
+
+#line	9
+	' * Write
+	pusha	0
+	loadi
+	pushi	1
+	addi
+	pusha	0
+	pusha	0
+	loadi
+	pushi	1
+	addi
+	storei
+	outi
+
+#line	10
+	' * While
+ label0:
+	pusha	0
+	loadi
+	pushi	1
+	addi
+	pusha	0
+	pusha	0
+	loadi
+	pushi	1
+	addi
+	storei
+	pushi	4
+	lti
+	jz	label1
+	' * While Body
+
+#line	11
+	' * Write
+	pusha	0
+	loadi
+	outi
+	jmp	label0
+ label1:
+	ret	0, 0, 0

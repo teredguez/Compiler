@@ -104,4 +104,12 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(AssignmentExpression a, Void param) {
+        super.visit(a, param);
+        if(!a.getLeftExpression().getLvalue()){
+            new ErrorType("Invalid left value for the assignment", a.getLeftExpression() );
+        }
+        return null;
+    }
 }

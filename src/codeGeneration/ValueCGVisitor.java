@@ -211,5 +211,16 @@ public class ValueCGVisitor extends AbstractCGVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(AssignmentExpression a, Void param) {
+        a.getRightExpression().accept(this, null);
+
+        a.getLeftExpression().accept(address, null);
+        a.getRightExpression().accept(this, null);
+
+        cg.convertTo(a.getRightExpression().getType(), a.getLeftExpression().getType());
+        cg.store(a.getLeftExpression().getType());
+        return null;
+    }
 }
 

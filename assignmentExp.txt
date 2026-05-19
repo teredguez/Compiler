@@ -1,0 +1,13 @@
+let a:int;
+let b:int;
+let c:int;
+let r:number;
+
+function main(): void {
+
+   a = (b = 3) + 2;
+   log (a = a + 1);
+   while ((a = a + 1) < 4) {
+        log a;
+   }
+}
