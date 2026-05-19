@@ -1041,7 +1041,7 @@ public class TSmmParser extends Parser {
 
 				            _localctx.ast.add( new ReturnStatement(
 				                    ((StatementContext)_localctx).expression.ast.getLine(),
-				                    ((StatementContext)_localctx).expression.ast.getLine(),
+				                    ((StatementContext)_localctx).expression.ast.getColumn(),
 				                    ((StatementContext)_localctx).expression.ast));
 				         
 				}

@@ -147,7 +147,7 @@ statement returns [List<Statement> ast = new ArrayList<>()] locals [List<Stateme
          | 'return' expression ';'{
             $ast.add( new ReturnStatement(
                     $expression.ast.getLine(),
-                    $expression.ast.getLine(),
+                    $expression.ast.getColumn(),
                     $expression.ast));
          }
          | statementFunctionInvocation ';'{$ast.add($statementFunctionInvocation.ast);
