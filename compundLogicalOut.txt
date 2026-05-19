@@ -1,0 +1,36 @@
+
+#source	"compundLogical.txt"
+
+	' * char r (offset 0)
+
+' Invocation to the main function
+call main
+halt
+
+
+#line	3
+ main:
+	' * Parameters
+	' * Local variables
+	enter	0
+
+#line	4
+	' * Assignment
+	pusha	0
+	pushb	121
+	storeb
+	pusha	0
+	dupi
+	loadb
+	b2i
+	pushi	2
+	and
+	i2b
+	storeb
+
+#line	6
+	' * Write
+	pusha	0
+	loadb
+	outb
+	ret	0, 0, 0
