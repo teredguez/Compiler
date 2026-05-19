@@ -127,6 +127,11 @@ public class CodeGenerator {
         out.flush();
     }
 
+    public void dup(Type type){
+        out.println("\tdup" + type.suffix());
+        out.flush();
+    }
+
     public void not() {
         out.println("\tnot");
         out.flush();

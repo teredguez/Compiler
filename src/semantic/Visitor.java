@@ -48,5 +48,5 @@ public interface Visitor<RT,PT> {
 
     RT visit(RecordField a, PT param);
 
-
+    RT visit(ArithmeticAssignment a, PT param);
 }

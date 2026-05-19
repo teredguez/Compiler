@@ -1,0 +1,322 @@
+
+#source	"arithmeticAssignment.txt"
+
+	' * int i (offset 0)
+	' * char c (offset 2)
+	' * real n (offset 3)
+	' * RecordType r (offset 7)
+	' * ArrayType arr (offset 9)
+
+' Invocation to the main function
+call main
+halt
+
+
+#line	8
+ main:
+	' * Parameters
+	' * Local variables
+	enter	0
+
+#line	11
+	' * Assignment
+	pusha	0
+	pushi	10
+	storei
+	pusha	0
+	dupi
+	loadi
+	pushi	5
+	addi
+	storei
+
+#line	14
+	' * Write
+	pusha	0
+	loadi
+	outi
+
+#line	14
+	' * Write
+	pushb	10
+	outb
+	pusha	0
+	dupi
+	loadi
+	pushi	3
+	subi
+	storei
+
+#line	17
+	' * Write
+	pusha	0
+	loadi
+	outi
+
+#line	17
+	' * Write
+	pushb	10
+	outb
+	pusha	0
+	dupi
+	loadi
+	pushi	2
+	muli
+	storei
+
+#line	20
+	' * Write
+	pusha	0
+	loadi
+	outi
+
+#line	20
+	' * Write
+	pushb	10
+	outb
+	pusha	0
+	dupi
+	loadi
+	pushi	4
+	divi
+	storei
+
+#line	23
+	' * Write
+	pusha	0
+	loadi
+	outi
+
+#line	23
+	' * Write
+	pushb	10
+	outb
+
+#line	27
+	' * Assignment
+	pusha	0
+	pushi	1
+	storei
+	pusha	0
+	dupi
+	loadi
+	pushb	65
+	b2i
+	addi
+	storei
+
+#line	30
+	' * Write
+	pusha	0
+	loadi
+	outi
+
+#line	30
+	' * Write
+	pushb	10
+	outb
+	pusha	0
+	dupi
+	loadi
+	pushb	66
+	b2i
+	muli
+	storei
+
+#line	33
+	' * Write
+	pusha	0
+	loadi
+	outi
+
+#line	33
+	' * Write
+	pushb	10
+	outb
+
+#line	37
+	' * Assignment
+	pusha	3
+	pushf	2.5
+	storef
+	pusha	3
+	dupi
+	loadf
+	pushi	1
+	i2f
+	addf
+	storef
+
+#line	40
+	' * Write
+	pusha	3
+	loadf
+	outf
+
+#line	40
+	' * Write
+	pushb	10
+	outb
+	pusha	3
+	dupi
+	loadf
+	pushi	2
+	i2f
+	mulf
+	storef
+
+#line	43
+	' * Write
+	pusha	3
+	loadf
+	outf
+
+#line	43
+	' * Write
+	pushb	10
+	outb
+	pusha	3
+	dupi
+	loadf
+	pushi	2
+	i2f
+	divf
+	storef
+
+#line	46
+	' * Write
+	pusha	3
+	loadf
+	outf
+
+#line	46
+	' * Write
+	pushb	10
+	outb
+	pusha	3
+	dupi
+	loadf
+	pushb	65
+	b2i
+	i2f
+	subf
+	storef
+
+#line	49
+	' * Write
+	pusha	3
+	loadf
+	outf
+
+#line	49
+	' * Write
+	pushb	10
+	outb
+
+#line	54
+	' * Assignment
+	pusha	9
+	pushi	0
+	pushi	2
+	muli
+	addi
+	pushi	10
+	storei
+	pusha	9
+	pushi	0
+	pushi	2
+	muli
+	addi
+	dupi
+	loadi
+	pushi	5
+	addi
+	storei
+
+#line	57
+	' * Write
+	pusha	9
+	pushi	0
+	pushi	2
+	muli
+	addi
+	loadi
+	outi
+
+#line	57
+	' * Write
+	pushb	10
+	outb
+
+#line	61
+	' * Assignment
+	pusha	7
+	pushi	0
+	addi
+	pushi	7
+	storei
+	pusha	7
+	pushi	0
+	addi
+	dupi
+	loadi
+	pushi	3
+	muli
+	storei
+
+#line	64
+	' * Write
+	pusha	7
+	pushi	0
+	addi
+	loadi
+	outi
+
+#line	64
+	' * Write
+	pushb	10
+	outb
+
+#line	68
+	' * Assignment
+	pusha	0
+	pushi	0
+	storei
+
+#line	70
+	' * Assignment
+	pusha	9
+	pusha	0
+	loadi
+	pushi	2
+	muli
+	addi
+	pushi	1
+	storei
+	pusha	9
+	pusha	0
+	loadi
+	pushi	2
+	muli
+	addi
+	dupi
+	loadi
+	pushi	5
+	addi
+	storei
+
+#line	73
+	' * Write
+	pusha	9
+	pushi	0
+	pushi	2
+	muli
+	addi
+	loadi
+	outi
+
+#line	73
+	' * Write
+	pushb	10
+	outb
+	ret	0, 0, 0

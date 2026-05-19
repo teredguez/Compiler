@@ -1,6 +1,7 @@
 package semantic;
 
 import ast.expressions.*;
+import ast.statements.ArithmeticAssignment;
 import ast.statements.Assignment;
 import ast.statements.FunctionInvocation;
 import ast.statements.InputStatement;
@@ -104,4 +105,12 @@ public class LValueVisitor extends AbstractVisitor<Void,Void>{
         return null;
     }
 
+    @Override
+    public Void visit(ArithmeticAssignment a, Void param) {
+        super.visit(a, param);
+        if(!a.getLeftExpression().getLvalue()){
+            new ErrorType("left expr must be lVALUE",a);
+        }
+        return null;
+    }
 }

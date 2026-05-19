@@ -106,11 +106,11 @@ arguments returns[List<Expression>ast = new ArrayList<>()]:
           ;
 
 statement returns [List<Statement> ast = new ArrayList<>()] locals [List<Statement> elseStmts = new ArrayList<>()]:
-          'log' arguments ';'{
+          log='log' arguments ';'{
             for(Expression e : $arguments.ast){
                 $ast.add( new LogStatement(
-                        e.getLine(),
-                        e.getColumn(),
+                        $log.getLine(),
+                        $log.getCharPositionInLine()+1,
                         e));
             }
           }
@@ -128,6 +128,14 @@ statement returns [List<Statement> ast = new ArrayList<>()] locals [List<Stateme
                     $e1.ast,
                     $e2.ast));
          }
+        | e1=expression OP=('+=' | '-=' | '/=' | '*=') e2=expression ';'{
+                     $ast.add(new ArithmeticAssignment(
+                             $e1.ast.getLine(),
+                             $e1.ast.getColumn(),
+                             $e1.ast,
+                             $e2.ast,
+                             $OP.text));
+                  }
          | 'while' '(' expression ')' block{
             $ast.add(new WhileStatement(
                     $expression.ast.getLine(),
@@ -247,7 +255,7 @@ locals [List<RecordField> recordsList = new ArrayList<RecordField>()]
     | '[' n=INT_CONSTANT ']' t=type { $ast = new ArrayType(LexerHelper.lexemeToInt($n.getText()), $t.ast); }
     | '['
         (
-          'let' ID vars=variables ':' t=type ';'
+          'let' ID variables ':' t=type ';'
           {
               boolean duplicated = false;
 
@@ -256,7 +264,8 @@ locals [List<RecordField> recordsList = new ArrayList<RecordField>()]
                       duplicated = true;
                       new ErrorType(
                           $ID.text + " is already defined in this scope",
-                          rf);
+                          rf
+                      );
                       break;
                   }
               }
@@ -265,11 +274,37 @@ locals [List<RecordField> recordsList = new ArrayList<RecordField>()]
                   $recordsList.add(
                       new RecordField(
                           $ID.getLine(),
-                          $ID.getCharPositionInLine()+1,
+                          $ID.getCharPositionInLine() + 1,
                           $ID.getText(),
                           $t.ast
                       )
                   );
+              }
+
+              for (Token id : $variables.ast) {
+                  duplicated = false;
+
+                  for (RecordField rf : $recordsList) {
+                      if (rf.getName().equals(id.getText())) {
+                          duplicated = true;
+                          new ErrorType(
+                              id.getText() + " is already defined in this scope",
+                              rf
+                          );
+                          break;
+                      }
+                  }
+
+                  if (!duplicated) {
+                      $recordsList.add(
+                          new RecordField(
+                              id.getLine(),
+                              id.getCharPositionInLine() + 1,
+                              id.getText(),
+                              $t.ast
+                          )
+                      );
+                  }
               }
           }
         )+

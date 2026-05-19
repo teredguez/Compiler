@@ -1,6 +1,7 @@
 package codeGeneration;
 
 import ast.Program;
+import ast.Type;
 import ast.definitions.FuncDefinition;
 import ast.definitions.VarDefinition;
 import ast.locatables.Definition;
@@ -280,4 +281,22 @@ public class ExecuteCGVisitor extends AbstractCGVisitor<Void,FuncDefinition>{
         return null;
     }
 
+    @Override
+    public Void visit(ArithmeticAssignment a, FuncDefinition param) {
+        Type arithmeticOperation = a.getLeftExpression().getType().arithmetic(a.getRightExpression().getType(),a);
+
+        a.getLeftExpression().accept(address,null);
+        cg.dup(IntType.getInstance());
+        cg.load(a.getLeftExpression().getType());
+        cg.convertTo(a.getLeftExpression().getType(),arithmeticOperation);
+
+        a.getRightExpression().accept(value,null);
+        cg.convertTo(a.getRightExpression().getType(),arithmeticOperation);
+
+        cg.arithmetic(a.getOperator().replace("=",""),arithmeticOperation);
+        cg.convertTo(arithmeticOperation,a.getLeftExpression().getType());
+
+        cg.store(a.getLeftExpression().getType());
+        return null;
+    }
 }

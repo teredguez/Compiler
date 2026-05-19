@@ -128,6 +128,14 @@ statement returns [List<Statement> ast = new ArrayList<>()] locals [List<Stateme
                     $e1.ast,
                     $e2.ast));
          }
+        | e1=expression OP=('+=' | '-=' | '/=' | '*=') e2=expression ';'{
+                     $ast.add(new ArithmeticAssignment(
+                             $e1.ast.getLine(),
+                             $e1.ast.getColumn(),
+                             $e1.ast,
+                             $e2.ast,
+                             $OP.text));
+                  }
          | 'while' '(' expression ')' block{
             $ast.add(new WhileStatement(
                     $expression.ast.getLine(),
